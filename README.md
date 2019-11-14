@@ -1,2 +1,4 @@
 # SmallSimplePokedex
- Small simple pokedex that was created as en exertice to rember old thing and learn new things 
+ Small simple pokedex that was created as en exercise to remember old thing and learn new things.
+ 
+  
