@@ -1,18 +1,18 @@
 .pokedex {
-    &__ui {
-        width: 100%;
-        background-color: $color-light-2;
-        position: sticky;
-        top:10rem;
-        z-index: 30;
-    }
+  &__ui {
+    width: 100%;
+    background-color: $color-light-2;
+    position: sticky;
+    top: 10rem;
+    z-index: 30;
+  }
 
-    &__display {
-        padding: 3rem;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-        justify-content: space-evenly;
-        row-gap: 3rem;
-    }
+  &__display {
+    padding: 3rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    justify-content: space-evenly;
+    row-gap: 3rem;
+  }
 }
