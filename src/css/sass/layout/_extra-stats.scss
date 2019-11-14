@@ -1,0 +1,76 @@
+.extra-stats {
+    display: flex;
+    grid-column: 1/-1;
+
+    &__abilities,
+    &__evs,
+    &__items {
+        flex: 1;
+        padding: 1rem;
+    }
+
+    &__items {
+        &-container {
+            text-align: center;
+        }
+    }
+
+    &__evs-display {
+        margin: .2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    &__evs-container {
+
+        &-hp,
+        &-attack,
+        &-defense,
+        &-spAtk,
+        &-spDef,
+        &-speed {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 1.5rem;
+            width: 6rem;
+            height: 6rem;
+            text-align: center;
+            color: $color-text-white;
+            border-radius: 1rem;
+            margin: .2rem .2rem;
+        }
+
+        &-hp {
+            background-color: $color-hp;
+        }
+
+        &-attack {
+            background-color: $color-attack;
+        }
+
+        &-defense {
+            background-color: $color-defense;
+        }
+
+        &-spAtk {
+            background-color: $color-spAtk;
+        }
+
+        &-spDef {
+            background-color: $color-spDef;
+        }
+
+        &-speed {
+            background-color: $color-speed;
+        }
+
+        &-total {
+            font-size: 2rem;
+            width: 100%;
+            text-align: center;
+            margin: .3rem;
+        }
+    }
+}

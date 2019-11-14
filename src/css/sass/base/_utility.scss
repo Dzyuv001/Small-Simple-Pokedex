@@ -1,0 +1,10 @@
+.grid {
+ &__spanAll-width {// used to fill the full main axis
+    grid-column: 1 /-1;
+ }
+
+ &__center {
+    justify-self: center;
+ }
+}
+

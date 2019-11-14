@@ -1,0 +1,62 @@
+.versus {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  justify-items: center;
+
+  &__title {
+    height: 2rem;
+    font-size: 6rem;
+    text-align: center;
+    height: 5rem;
+    &--padding-1rem {
+      padding: 1rem 0;
+    }
+  }
+
+  &__table {
+    margin: 0 1rem;
+  }
+
+  &__info {
+    margin-top: -4rem;
+    text-align: center;
+
+    &.primaryInfo {
+      width: 100%;
+    }
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+
+    &--column {
+      flex-direction: column;
+    }
+
+    &--half {
+      flex: 0 0 50%;
+    }
+  }
+
+  &--center {
+    width: 65%;
+    margin: 0 auto;
+  }
+  &__toggle-element {
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+    transition: all 0.2s ease-in-out;
+
+    &--visible#elemCompareBaseStats-0,
+    &--visible#elemCompareBaseStats-1 {
+      display: flex;
+      justify-content: space-around;
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}

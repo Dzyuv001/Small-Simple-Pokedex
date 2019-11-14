@@ -1,0 +1,77 @@
+.effectiveness {
+    width: 95%;
+    display: none;
+    opacity: 0;
+    transition: all .2s ease-in-out;
+
+    &--visible {
+        display: block;
+        opacity: 1;
+    }
+
+    &__container {
+        display: flex;
+        flex-flow: row wrap;
+        margin: .5rem 0;
+    }
+
+    &__title {
+        width: 10%;
+        vertical-align: inherit;
+    }
+
+    &__tab {
+        color: $color-light-3;
+        transition: all .2s ease-in-out;
+
+        &--active {
+            color: $color-dark-2;
+        }
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    &__value {
+        width: 5.3rem;
+        color: $color-text-grey-dark1;
+        background-color: $color-text-white;
+        padding: .4rem;
+        border-radius: 50px;
+        text-align: center;
+        @extend %unHighlightable;
+    }
+
+    &__element {
+        width: 14rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: $color-text-white;
+        padding: .2rem 1rem;
+        margin: .4rem .2rem;
+        font-size: 1.5rem;
+        border-radius: 50px;
+    }
+}
+
+@include effectiveness-styling($bug, $color-bug, "Bug");
+@include effectiveness-styling($dark, $color-dark, "Dark");
+@include effectiveness-styling($dragon, $color-dragon, "Dragon");
+@include effectiveness-styling($electric, $color-electric, "Electric");
+@include effectiveness-styling($fairy, $color-fairy, "Fairy");
+@include effectiveness-styling($fighting, $color-fighting, "Fighting");
+@include effectiveness-styling($fire, $color-fire, "Fire");
+@include effectiveness-styling($flying, $color-flying, "Flying");
+@include effectiveness-styling($ghost, $color-ghost, "Ghost");
+@include effectiveness-styling($grass, $color-grass, "Grass");
+@include effectiveness-styling($ground, $color-ground, "Ground");
+@include effectiveness-styling($ice, $color-ice, "Ice");
+@include effectiveness-styling($normal, $color-normal, "Normal");
+@include effectiveness-styling($poison, $color-poison, "Poison");
+@include effectiveness-styling($psychic, $color-psychic, "Psychic");
+@include effectiveness-styling($rock, $color-rock, "Rock");
+@include effectiveness-styling($steel, $color-steel, "Steel");
+@include effectiveness-styling($water, $color-water, "Water");

@@ -1,0 +1,33 @@
+.background {
+    width: 100%;
+    background: linear-gradient(to bottom right, #2b9ec8, #76e7d7);
+    position: relative;
+    background-repeat: no-repeat;
+    height: 150vw;
+    position: fixed;
+
+    &__animation {
+        width: 400%;
+        height: 150vw;
+        background: linear-gradient(135deg, #1d93ca 25%, rgba(0, 0, 0, 0) 25.2%), linear-gradient(225deg, #1d93ca 25%, rgba(0, 0, 0, 0) 25.2%), linear-gradient(315deg, #1d93ca 25%, rgba(0, 0, 0, 0) 25.2%), linear-gradient(45deg, #1d93ca 25%, rgba(0, 0, 0, 0) 25.2%), #0000;
+        background-size: 20vh 20vh;
+        background-position: -11vh 0, -11vh 0, 0 .1px, 0 .1px;
+        backface-visibility: hidden;
+        transform: rotateZ(45deg) scale(1) skewY(-30deg);
+        position: fixed;
+        top: -30vh;
+        filter: blur(0.2vh);
+        z-index: 2;
+        animation: moveZigZag 5s infinite linear;
+        perspective: 100px;
+    }
+
+    &__overlay {
+        width: 100%;
+        height: 150vw;
+        background-image: linear-gradient(to right bottom, #1985c831, #24abc911);
+        position: fixed;
+        z-index: 3;
+        top: -3vh;
+    }
+}

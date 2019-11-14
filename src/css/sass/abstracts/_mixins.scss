@@ -1,0 +1,44 @@
+//drying up css
+@mixin effectiveness-styling($selector-effective, $color-effective, $text-effective) {
+
+    //   @debug #{$selector-effective};
+    #{$selector-effective} {
+        background-color: $color-effective;
+        border: 2px solid darken($color: $color-effective, $amount: 10%);
+        &:before {
+            content: $text-effective;
+
+        }
+        &>.effectiveness__value {
+            border: 2px solid darken($color: $color-effective, $amount: 10%);
+
+        }
+    }
+}
+
+@mixin stats-styling($selector-stats, $color-stats) {
+    #{$selector-stats} {
+        & .stats__base-data:first-child {
+            background-color: $color-stats;
+            border: 2px solid darken($color: $color-stats, $amount: 10%);
+        }
+
+        &:hover {
+            color: $color-text-white;
+            background-color: $color-stats;
+            transition: all .2s ease-in-out;
+
+            & .stats__base-title {
+                color: $color-text-white;
+                transition: all .2s ease-in-out;
+            }
+
+            & .stats__base-data:first-child {
+                background-color: $color-text-white;
+                border: none;
+                transition: all .2s ease-in-out;
+            }
+        }
+
+    }
+}

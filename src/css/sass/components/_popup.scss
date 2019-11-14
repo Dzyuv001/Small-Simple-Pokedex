@@ -1,0 +1,88 @@
+.popup {
+    &.live &__container {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    &__container {
+        width: 85%;
+        height: 85%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(.3);
+        opacity: 0;
+        background-color: #fff;
+        border-radius: 1rem;
+        padding: 3rem;
+        transition: all .2s .3s ease-in-out;
+
+    }
+
+    &__btn-container {
+        position: absolute;
+        top: 10%;
+        left: 85%;
+        z-index: 101;
+        height: 12rem;
+        width: 5rem;
+    }
+
+
+    &__btn {
+        // position: absolute;
+        display: block;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        background-image: $gradient-blue;
+        color: $color-text-white;
+        border: none;
+        margin: 1rem;
+        outline: none;
+        text-decoration: none;
+        box-shadow: $dropshadow-static;
+        text-align: center;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+            transform: scale(1.2);
+            box-shadow: $dropshadow-hover;
+        }
+    }
+
+    &__btn-close {
+        line-height: 500%;
+
+    }
+
+    &__btn-like {
+        fill: #fff;
+
+        & * {
+            width: 50%;
+        }
+    }
+}
+
+
+#pokemon,
+#compare {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #0008;
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease-in-out;
+}
+
+#pokemon.live,
+#compare.live {
+    opacity: 1;
+    visibility: visible;
+    z-index: 100;
+}

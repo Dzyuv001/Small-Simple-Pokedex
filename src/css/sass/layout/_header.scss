@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  height: 10rem;
+  position: sticky;
+  top: 0;
+  background-color: #eee;
+  z-index: 50;
+
+  &__logo {
+    min-width: 26rem;
+    object-fit: contain;
+    position: relative;
+  }
+}
+
+.logo {
+  &__element {
+    display: inline;
+  }
+
+  &__img {
+    display: inline;
+    position: absolute;
+    width: 5rem;
+    transform-origin: 50% 50%;
+    animation: logoStart 1.5s 1s 1 forwards ease-in-out;
+    animation-iteration-count: 1;
+
+    &:hover {
+        left: 75%;
+        opacity: 1;
+        transform-origin: 50% 80%;
+        animation: shake 2s 1s infinite ease-in-out;
+    }
+  }
+}

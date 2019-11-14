@@ -1,0 +1,25 @@
+.input {
+    &__form {
+        &--flex-row-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__field-container {
+        background-color: white;
+        border-radius: 4rem;
+        display: flex;
+        transition: all 0.2s ease-in-out;
+        margin: 1rem 0;
+    }
+
+    &__field {
+        border: none;
+        background-color: transparent;
+        font-size: 1.7rem;
+        font-family: inherit;
+        outline: none;
+    }
+}

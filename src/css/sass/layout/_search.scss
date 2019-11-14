@@ -1,0 +1,97 @@
+.search {
+    position: relative;
+    max-width: 40rem;
+
+    &__form {
+        visibility: visible;
+    }
+
+    &__btn {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    &__icon {
+        width: 2rem;
+        height: 2rem;
+        fill:white;
+        margin-right: 1rem;
+    }
+
+    &__container {
+        position: relative;
+        visibility: hidden;
+        z-index: 10;
+        display: none;
+        flex-direction: column;
+        background-color: white;
+        border-radius: 20px;
+        padding: 2rem;
+        margin-top: 1.5rem;
+        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+        transition: all .2s ease-in-out;
+        opacity: 0;
+        transform: scale(.4);
+        transform-origin: 10% 10%;
+        @extend %unHighlightable;
+    }
+
+    &__sub-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        margin: .3rem 0;
+    }
+
+    &__chk-btn {
+        display: none;
+    }
+
+    &__chk-btn:checked~&__container {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+    }
+
+
+    &__btn-label {
+        background-image: linear-gradient(to right bottom, #76cde7 0%, #2b9ec8 100%);
+        border-radius: 4rem;
+        border: none;
+        padding: .4rem 1.2rem;
+        color: #fff;
+        transition: all .2s ease-in-out;
+        margin: 1rem;
+        @extend %unHighlightable;
+    }
+
+    &__field-container {
+        background-color: white;
+        border-radius: 4rem;
+        display: flex;
+        transition: all 0.2s ease-in-out;
+        margin: 1rem 0;
+
+        &:focus-within {
+            transform: scale(1.02) translateY(-.3rem);
+            box-shadow: 0 0.7rem 3rem #1181;
+        }
+    }
+
+    &__field {
+        border: none;
+        background-color: transparent;
+        width: 30rem;
+        font-size: 1.7rem;
+        padding-left: 3rem;
+        font-family: inherit;
+        outline: none;
+
+        &::placeholder {
+            color: $color-text-grey-light1;
+        }
+    }
+
+
+}

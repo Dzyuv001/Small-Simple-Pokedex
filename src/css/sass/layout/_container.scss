@@ -1,0 +1,15 @@
+.container {
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    &__child {
+        margin: 8rem auto;
+        padding: 3rem;
+        max-width: 120rem;
+        background-color: #eee;
+        border-radius: 20px;
+    }
+}

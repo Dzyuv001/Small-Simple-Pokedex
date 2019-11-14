@@ -1,0 +1,15 @@
+.moves {
+    grid-column: 1 /-1;
+    display: grid;
+    // grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    grid-row-gap: 2rem;
+
+    &__title {
+        grid-column: 1 /-1;
+    }
+
+    &__levelup, &__tms, &__egg, &__tutor {
+        width: 95%;
+    }
+}

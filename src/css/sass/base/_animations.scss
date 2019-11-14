@@ -1,0 +1,54 @@
+@keyframes moveZigZag {
+  from {
+    top: -30vh;
+    left: 0;
+  }
+
+  to {
+    top: -78.4vh;
+    left: 20.4vh;
+  }
+}
+
+@keyframes logoStart {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 75%;
+    opacity: 1;
+    transform: rotate(1440deg);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0);
+  }
+
+  20% {
+    transform: rotate(-45deg);
+  }
+
+  25% {
+    transform: rotate(-45deg);
+  }
+
+  70% {
+    transform: rotate(45deg);
+  }
+
+  75% {
+    transform: rotate(45deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+}

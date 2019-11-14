@@ -1,0 +1,150 @@
+
+//VALUES
+$dropshadow-static:0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+$dropshadow-hover:0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+
+$dropshadow-static-sm: 0 .6rem 1.5rem #0003, 0 .3rem .3rem #0004;
+$dropshadow-hover-sm:0 1.4rem 3rem #0005, 0 1rem .7rem #0004;
+
+//transitions
+$transition-small:all .2s ease-in-out;
+
+//z indexes
+
+
+//COLORS
+
+$color-zigzag: #1d93ca;
+
+$color-blue-primary: #2b9ec8;
+$color-blue-secondary: #76cde7;
+
+$color-text-white:#fff;
+
+$color-text-grey-light1: #aaa;
+$color-text-grey-light2: #999;
+
+$color-text-grey-dark1: #333;
+
+$color-white: white;
+$color-light-1:#eee;
+$color-light-2:#bbb;
+$color-light-3:#999;
+$color-light-4:#777;
+$color-dark-4:#666;
+$color-dark-3:#555;
+$color-dark-2:#333;
+$color-dark-1:#111;
+
+
+
+
+$gradient-blue:linear-gradient(to right bottom, #76cde7 0%, #2b9ec8 100%);
+
+$color-hp:#e21f1f;
+$color-hp-light:#ff8080;
+$color-hp-dark:#b84242;
+$color-attack:#F08030;
+$color-attack-light:#ec9a5f;
+$color-attack-dark:#bb6324;
+$color-defense:#bea12a;
+$color-defense-light:#fada5b;
+$color-defense-dark:#c8a826;
+$color-spAtk:#6890F0;
+$color-spAtk-light:#8ca9ec;
+$color-spAtk-dark:#5677c5;
+$color-spDef:#78C850;
+$color-spDef-light:#8fca72;
+$color-spDef-dark:#5e9c3f;
+$color-speed:#e9638b;
+$color-speed-light:#fa8aac;
+$color-speed-dark:#f85888;
+
+//move status
+$color-status-physical:#C21;
+$color-status-physical-dark:darken(#C21, 10%);
+$color-status-special:#457;
+$color-status-special-dark:darken(#457,10%);
+$color-status-status:#888;
+$color-status-status-dark:darken(#457,10%);
+
+
+//pokemon colours
+$color-pokemon-red: #f05868;
+$color-pokemon-blue: #3088f0;
+$color-pokemon-yellow: #f0d048;
+$color-pokemon-green: #40b868;
+$color-pokemon-black: #585858;
+$color-pokemon-brown: #b07030;
+$color-pokemon-purple: #a868c0;
+$color-pokemon-gray: #a0a0a0;
+$color-pokemon-white: #f0f0f0;
+$color-pokemon-pink: #f890c8;
+
+//type colours
+$color-bug:#b1c03b;
+$color-bug-dark:darken(#b1c03b,20%);
+$color-dark:#523e2f;
+$color-dark-dark:darken(#523e2f,20%);
+$color-dragon:#8675dd;
+$color-dragon-dark:darken(#8675dd,20%);
+$color-electric:#fac845;
+$color-electric-dark:darken(#fac845,20%);
+$color-fairy:#e6aae5;
+$color-fairy-dark:darken(#e6aae5,20%);
+$color-fighting:#8e4933;
+$color-fighting-dark:darken(#8e4933,20%);
+$color-fire:#e84b1d;
+$color-fire-dark:darken(#e84b1d,20%);
+$color-flying:#a9b6f3;
+$color-flying-dark:darken(#a9b6f3,20%);
+$color-ghost:#6f6db6;
+$color-ghost-dark:darken(#6f6db6,20%);
+$color-grass:#a3d47d;
+$color-grass-dark:darken(#a3d47d,20%);
+$color-ground:#ccb781;
+$color-ground-dark:darken(#ccb781,20%);
+$color-ice:#a0daee;
+$color-ice-dark:darken(#a0daee,20%);
+$color-normal:#cdc9c4;
+$color-normal-dark:darken(#cdc9c4,20%);
+$color-poison:#965299;
+$color-poison-dark:darken(#965299,20%);
+$color-psychic:#e8709b;
+$color-psychic-dark:darken(#e8709b,20%);
+$color-rock:#9e8a53;
+$color-rock-dark:darken(#9e8a53,20%);
+$color-steel:#9f9ead;
+$color-steel-dark:darken(#9f9ead,20%);
+$color-water:#3e9cf7;
+$color-water-dark:darken(#3e9cf7,20%);
+
+
+//Dom variables
+$bug: ".effectiveness__element-7";
+$dark: ".effectiveness__element-17";
+$dragon: ".effectiveness__element-16";
+$electric: ".effectiveness__element-13";
+$fairy: ".effectiveness__element-18";
+$fighting: ".effectiveness__element-2";
+$fire: ".effectiveness__element-10";
+$flying: ".effectiveness__element-3";
+$ghost: ".effectiveness__element-8";
+$grass: ".effectiveness__element-12";
+$ground: ".effectiveness__element-5";
+$ice: ".effectiveness__element-15";
+$normal: ".effectiveness__element-1";
+$poison: ".effectiveness__element-4";
+$psychic: ".effectiveness__element-14";
+$rock: ".effectiveness__element-6";
+$steel: ".effectiveness__element-9";
+$water: ".effectiveness__element-11";
+
+
+$hp: ".stats__base-hp";
+$attack: ".stats__base-attack";
+$defense: ".stats__base-defense";
+$spAtk: ".stats__base-spAtk";
+$spDef: ".stats__base-spDef";
+$speed: ".stats__base-speed";

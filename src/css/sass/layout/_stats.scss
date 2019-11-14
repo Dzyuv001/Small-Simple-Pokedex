@@ -1,0 +1,53 @@
+.stats {
+    width: 100%;
+    display: flex;
+    grid-column: 1 /-1;
+    align-items: stretch;
+
+    &__tab-element {
+        visibility: hidden;
+        opacity: 0;
+        display: none;
+        transition: all .2s ease-in-out;
+
+        &--visible {
+            visibility: visible;
+            display: block;
+            opacity: 1;
+        }
+    }
+
+    &__base,
+    &__defence {
+        flex: 1;
+        width: 100%;
+    }
+
+    &__tab {
+        color: $color-light-3;
+        transition: all .2s ease-in-out;
+
+        &--active {
+            color: $color-dark-2;
+        }
+
+        &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    &__base-table {
+        width: 90%;
+    }
+    &--half {
+        flex: 0 0 50%;
+    }
+}
+
+@include stats-styling($hp, $color-hp);
+@include stats-styling($attack, $color-attack);
+@include stats-styling($defense, $color-defense);
+@include stats-styling($spAtk, $color-spAtk);
+@include stats-styling($spDef, $color-spDef);
+@include stats-styling($speed, $color-speed);
