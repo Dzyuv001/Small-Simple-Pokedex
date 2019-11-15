@@ -23,14 +23,20 @@
     outline: none;
   }
 
-  &__rad-input {
+  &__rad-input,
+  &__checkbox-input {
     display: none;
   }
 
-  &__rad-label {
+  &__rad-label,
+  &__checkbox-label {
     font-size: 1.2rem;
     cursor: pointer;
     position: relative;
+  }
+
+  &__checkbox-label {
+    line-height: 3rem;
   }
 
   &__rad-btn {
@@ -58,7 +64,12 @@
       transition: opacity 0.2s;
     }
   }
-  
+
+  &__checkbox-container {
+    width: 7.5rem;
+    margin: 0.5rem 0;
+  }
+
   &__checkbox-btn {
     height: 3rem;
     width: 3rem;
@@ -66,11 +77,27 @@
     border-radius: 10%;
     display: inline-block;
     position: absolute;
-    left: -3.3rem;
-    top: -0.8rem;
+    left: 3.5rem;
+    
+    &::after {
+      content: "\2713";
+      font-size: 3.5rem;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $color-blue-secondary;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
   }
 
-  &__rad-input:checked ~ &__label &__rad-btn::after {
+  &__rad-input:checked ~ &__rad-label &__rad-btn::after {
+    opacity: 1;
+  }
+
+  &__checkbox-input:checked ~ &__checkbox-label &__checkbox-btn::after {
     opacity: 1;
   }
 }
