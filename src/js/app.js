@@ -57,7 +57,10 @@ const controlPokemon = async () => {
         //remove loader
         base.removeLoader(base.elements.pokemonPopupChild);
         base.elements.pokemonPopupChild.classList.remove("info__loading");
-        pokemonView.renderPokemon(state.pokemon.pokeData);
+        pokemonView.renderPokemon(
+          state.pokemon.pokeData,
+          state.likes.isLiked(state.pokemon.pokeData.primary.uId)
+        );
       }, 4000);
     } catch (error) {
       console.log(error);
@@ -426,8 +429,8 @@ const respondToQueryString = () => {
       controlPokemon();
       break;
     case "compare":
-        prepComparison(queryString.pokemon1);
-        prepComparison(queryString.pokemon2);
+      prepComparison(queryString.pokemon1);
+      prepComparison(queryString.pokemon2);
       controlCompare();
       break;
   }

@@ -141,7 +141,6 @@
     transition: $transition-small;
 
     &:hover {
-      // background-color:
       box-shadow: $dropshadow-hover-sm;
       transform: scale(1.1);
     }

@@ -33,7 +33,8 @@ export const renderPokemon = (pokeData, isLiked) => {
 }
 
 export const toggleLike = (isLiked) =>{
-    document.querySelector(".popup__btn-like").setAttribute("xlink:href", `./img/icons/sprites.svg#icon-like${isLiked ? "" : "_dislike"}`)
+    const elem = document.querySelector(".popup__btn-like svg use");
+        if (elem) elem.setAttribute("xlink:href", `./img/icons/sprites.svg#icon-like${isLiked ? "" : "_dislike"}`)
 }
 
 const pad = (str, max) => {
@@ -289,7 +290,7 @@ const renderStatsRadar = (stats) => {
 const renderEffectivenessMarkup = (keyName, damageNType) => {
     let effectiveTableRow = `
 <tr class="table__row">
-    <td class="effectiveness__title table__row-title ">${keyName.replace("_", " ")}: </td>
+    <td class="effectiveness__title table__row-title ">${keyName.replace(/_/g, " ")}: </td>
     <td class="effectiveness__container">
         ${buildContainers(damageNType)}
     </td>

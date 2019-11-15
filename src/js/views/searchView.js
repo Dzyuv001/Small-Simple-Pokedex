@@ -1,11 +1,5 @@
 import * as base from "./base";
 
-// Stat = ((Base * 2 + IV + (EV/4)) * Level / 100 + 5) * Nmod
-
-// Except for HP, which is:
-
-// HP = (Base * 2 + IV + (EV/4)) * Level / 100 + 10 + Level
-
 export const getInput = () => {//used to get the search criteria
     const searchCriteria = {};
     searchCriteria.search = base.elements.searchField.value;
@@ -85,7 +79,6 @@ const renderPokemon = (form, likes) => {
         </div>
     </div>
     </div>`;
-    //image of pokemon <img src="../img/pokemonImages/${genName(e.id, e.uId, e.f)}.png" alt="pokemon"> 
     });
     if (form.length > 1) {
         markup += `<div class="pokemon__rad-container">`;

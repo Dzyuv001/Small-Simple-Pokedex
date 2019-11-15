@@ -1,128 +1,120 @@
 .compare {
-    display: flex;
-    justify-content: center;
-    margin: 1rem 0;
-    padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  padding: 2rem 0;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+  &__compressed {
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+
+    #comparison__pokemon--2 {
+      flex-direction: row-reverse;
+    }
+
+    .compare__pokemon {
+      height: auto;
+    }
+
+    .compare__remove-btn {
+      align-self: end;
+      left: 85%;
+    }
+
+    .compare__pokemon-container {
+      height: 12rem;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .compare__pokemon-img {
+      & img {
+        margin-bottom: 0;
+        height: 12rem;
+        width: 12rem;
+      }
+    }
+
+    .pokemon__data {
+      width: 12rem;
+    }
+  }
+
+  &__remove-btn {
+    position: absolute;
+    left: 80%;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    background: red;
+    color: #fff;
+    border: none;
+    outline: none;
+    text-decoration: none;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    text-align: center;
+    line-height: 200%;
+    display: none;
+    transition: all 0.2s ease-in-out;
+  }
 
-    &__compressed {
-        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  &__pokemon {
+    background: none;
+    padding: 0.4rem;
+    height: 20rem;
+    border-radius: 0.8rem;
 
-        #comparison__pokemon--2 {
-            flex-direction: row-reverse;
+    &.live:hover {
+      background: linear-gradient(to left top, #d62906, #e73b1d);
 
-            .pokemon__data {
-                
-            }
-        }
-
-        .compare__pokemon {
-            height: auto;
-        }
-
-        .compare__remove-btn {
-            align-self: end;
-            left: 85%;
-        }
-
-        .compare__pokemon-container {
-            width: 25rem;
-            height: 12rem;
-            display: flex;
-            flex-direction: row;
-        }
-
-        .compare__pokemon-img {
-            & img {
-                margin-bottom: 0;
-                height: 12rem;
-                width: 12rem;
-            }
-
-        }
-
-        .pokemon__data {
-            width: 12rem;
-        }
+      .compare__remove-btn {
+        display: block;
+      }
     }
 
-    &__remove-btn {
-        position: absolute;
-        left: 80%;
-        border-radius: 50%;
-        height: 2rem;
-        width: 2rem;
-        background: red;
-        color: #fff;
-        border: none;
-        outline: none;
-        text-decoration: none;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-        text-align: center;
-        line-height: 200%;
-        display: none;
-        transition: all .2s ease-in-out;
+    &-container {
+      position: relative;
+      width: 17rem;
+      padding: 1rem;
+      background: white;
+      align-items: center;
+      align-self: center;
+      z-index: 0;
+      border-radius: 0.8rem;
+      border: none;
+      height: 100%;
+      transition: all 0.2s ease-in-out;
+
+      &.live:hover {
+        & .compare__remove-btn {
+          opacity: 1;
+        }
+      }
     }
 
-    &__pokemon {
-        background: none;
-        padding: .4rem;
-        height: 20rem;
-        border-radius: 0.8rem;
+    &-img {
+      display: flex;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
 
-        &.live:hover {
-            background: linear-gradient(to left top, #d62906, #e73b1d);
-
-            .compare__remove-btn {
-                display: block;
-
-            }
-        }
-
-        &-container {
-            position: relative;
-            width: 17rem;
-            padding: 1rem;
-            background: white;
-            align-items: center;
-            align-self: center;
-            z-index: 0;
-            border-radius: 0.8rem;
-            border: none;
-            height: 100%;
-            transition: all .2s ease-in-out;
-
-            &.live:hover {
-                & .compare__remove-btn {
-                    opacity: 1;
-                }
-            }
-        }
-
-        &-img {
-            display: flex;
-            text-align: center;
-            align-items: center;
-            justify-content: center;
-
-            & img {
-                width: 100%;
-                margin-bottom: -35%;
-            }
-        }
-
+      & img {
+        width: 100%;
+        margin-bottom: -35%;
+      }
     }
+  }
 
-    &__btn {
-        background: none;
-        border: none;
-        outline: none;
-        margin: 0 2rem;
-        font-size: 8rem;
-        transition: all .2s ease-in-out;
+  &__btn {
+    background: none;
+    border: none;
+    outline: none;
+    margin: 0 2rem;
+    font-size: 8rem;
+    transition: all 0.2s ease-in-out;
 
-        &--small {
-            font-size: 5rem;
-        }
+    &--small {
+      font-size: 5rem;
     }
+  }
 }

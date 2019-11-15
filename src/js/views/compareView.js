@@ -324,10 +324,7 @@ const renderAbilities = abilities => {
 const renderEffectivenessMarkup = (keyName, damageNType) => {
   let effectiveTableRow = `
 <tr class="table__row">
-    <td class="effectiveness__title table__row-title ">${keyName.replace(
-      "_",
-      " "
-    )}: </td>
+    <td class="effectiveness__title table__row-title ">${keyName.replace(/_/g," ")}: </td>
     <td class="effectiveness__container">
         ${buildContainers(damageNType)}
     </td>
