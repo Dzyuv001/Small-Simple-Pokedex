@@ -1,25 +1,76 @@
 .input {
-    &__form {
-        &--flex-row-center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+  &__form {
+    &--flex-row-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+  }
 
-    &__field-container {
-        background-color: white;
-        border-radius: 4rem;
-        display: flex;
-        transition: all 0.2s ease-in-out;
-        margin: 1rem 0;
-    }
+  &__field-container {
+    background-color: white;
+    border-radius: 4rem;
+    display: flex;
+    transition: all 0.2s ease-in-out;
+    margin: 1rem 0;
+  }
 
-    &__field {
-        border: none;
-        background-color: transparent;
-        font-size: 1.7rem;
-        font-family: inherit;
-        outline: none;
+  &__field {
+    border: none;
+    background-color: transparent;
+    font-size: 1.7rem;
+    font-family: inherit;
+    outline: none;
+  }
+
+  &__rad-input {
+    display: none;
+  }
+
+  &__rad-label {
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: relative;
+  }
+
+  &__rad-btn {
+    height: 3rem;
+    width: 3rem;
+    border: 5px solid $color-blue-primary;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    left: -3.3rem;
+    top: -0.8rem;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 1.3rem;
+      width: 1.3rem;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $color-blue-primary;
+      opacity: 0;
+      transition: opacity 0.2s;
     }
+  }
+  
+  &__checkbox-btn {
+    height: 3rem;
+    width: 3rem;
+    border: 5px solid $color-blue-primary;
+    border-radius: 10%;
+    display: inline-block;
+    position: absolute;
+    left: -3.3rem;
+    top: -0.8rem;
+  }
+
+  &__rad-input:checked ~ &__label &__rad-btn::after {
+    opacity: 1;
+  }
 }

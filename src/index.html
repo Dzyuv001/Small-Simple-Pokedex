@@ -40,19 +40,27 @@
                             <div class="search__container">
                                 <div class="search__sub-container">
                                     <div>
-                                        <input type="radio" name="radSearchNameMove" value="1" class="search__name-move"
-                                            checked>
-                                        <label class="search__label">Pokemon Names</label>
+                                        <input type="radio" name="typeOfSearch" id="radSearchName" value="1"
+                                            class="search__name-move input__rad-input" checked>
+                                        <label for="radSearchName" class="search__label input__rad-label">
+                                            <span class="input__rad-btn"></span>
+                                            Pokemon Names
+                                        </label>
+
                                     </div>
                                     <div>
-                                        <input type="radio" name="radSearchNameMove" value="2"
-                                            class="search__name-move">
-                                        <label class="search__label">Pokemon Moves</label>
+                                        <input type="radio" name="typeOfSearch" id="radSearchMove" value="2"
+                                            class="search__name-move input__rad-input">
+                                        <label for="radSearchMove" class="search__label input__rad-label">
+                                            <span class="input__rad-btn"></span> Pokemon Moves
+                                        </label>
                                     </div>
                                     <div>
-                                        <input type="radio" name="radSearchNameMove" value="3"
-                                            class="search__name-move">
-                                        <label class="search__label">Both</label>
+                                        <input type="radio" name="typeOfSearch" id="radSearchNameMove" value="3"
+                                            class="search__name-move input__rad-input">
+                                        <label for="radSearchNameMove" class="search__label input__rad-label">
+                                            <span class="input__rad-btn"></span>Both
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="search__sub-container">
@@ -169,7 +177,9 @@
                                     </select>
                                 </div>
                                 <div class="search__sub-container">
-                                    <label for="chkGen1" class="search__label">Gen 1</label>
+                                    <label for="chkGen1" class="search__label">Gen 1
+                                        <span class="input__checkbox-btn"></span>
+                                    </label>
                                     <input type="checkbox" class="search__chk--gen" name="chkGen1" value="1">
                                     <label for="chkGen2" class="search__label">Gen 2</label>
                                     <input type="checkbox" class="search__chk--gen" name="chkGen2" value="2">

@@ -15,13 +15,6 @@ export const toggleLikeBtn = (uId, isLiked) => {
       "xlink:href",
       `./img/icons/sprites.svg#icon-like${isLiked ? "" : "_dislike"}`
     );
-    console.log(
-      "the data for the like is ",
-      uId,
-      isLiked,
-      isLiked ? "" : "_dislike",
-      elem.getAttribute("xlink:href")
-    );
   }
 };
 
