@@ -7,9 +7,9 @@
     position: fixed;
 
     &__animation {
-        width: 400%;
-        height: 150vw;
-        background: linear-gradient(135deg, #1d93ca 25%, rgba(0, 0, 0, 0) 25.2%), linear-gradient(225deg, #1d93ca 25%, rgba(0, 0, 0, 0) 25.2%), linear-gradient(315deg, #1d93ca 25%, rgba(0, 0, 0, 0) 25.2%), linear-gradient(45deg, #1d93ca 25%, rgba(0, 0, 0, 0) 25.2%), #0000;
+        width: 1000%;
+        height: 400vw;    
+        background: linear-gradient(135deg, $color-zigzag 25%, rgba(0, 0, 0, 0) 25.2%), linear-gradient(225deg, $color-zigzag 25%, rgba(0, 0, 0, 0) 25.2%), linear-gradient(315deg, $color-zigzag 25%, rgba(0, 0, 0, 0) 25.2%), linear-gradient(45deg, $color-zigzag 25%, rgba(0, 0, 0, 0) 25.2%), $color-no-color;
         background-size: 20vh 20vh;
         background-position: -11vh 0, -11vh 0, 0 .1px, 0 .1px;
         backface-visibility: hidden;
@@ -19,13 +19,13 @@
         filter: blur(0.2vh);
         z-index: 2;
         animation: moveZigZag 5s infinite linear;
-        perspective: 100px;
+        perspective: 50px;
     }
 
     &__overlay {
         width: 100%;
         height: 150vw;
-        background-image: linear-gradient(to right bottom, #1985c831, #24abc911);
+        background-image: linear-gradient(to right bottom, $color-blue-primary--background, $color-blue-secondary--background);
         position: fixed;
         z-index: 3;
         top: -3vh;

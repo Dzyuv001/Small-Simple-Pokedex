@@ -1,60 +1,76 @@
 .effectiveness {
-    width: 95%;
-    display: none;
-    opacity: 0;
-    transition: all .2s ease-in-out;
+  width: 95%;
+  display: none;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
 
-    &--visible {
-        display: block;
-        opacity: 1;
+  &--visible {
+    display: block;
+    opacity: 1;
+  }
+
+  &__container {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0.5rem 0;
+  }
+
+  &__title {
+    width: 8%;
+    vertical-align: inherit;
+    @media only screen and (max-width: $bp-large) {
+      font-size: 110%;
     }
 
-    &__container {
-        display: flex;
-        flex-flow: row wrap;
-        margin: .5rem 0;
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 125%;
+    }
+  }
+
+  &__tab {
+    color: $color-light-3;
+    transition: all 0.2s ease-in-out;
+
+    &--active {
+      color: $color-dark-2;
     }
 
-    &__title {
-        width: 10%;
-        vertical-align: inherit;
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
     }
+  }
 
-    &__tab {
-        color: $color-light-3;
-        transition: all .2s ease-in-out;
-
-        &--active {
-            color: $color-dark-2;
-        }
-
-        &:hover {
-            text-decoration: underline;
-            cursor: pointer;
-        }
+  &__value {
+    width: 5.3rem;
+    color: $color-text-grey-dark1;
+    background-color: $color-text-white;
+    padding: 0.4rem;
+    border-radius: 50px;
+    text-align: center;
+    @extend %unHighlightable;
+    @media only screen and (max-width: $bp-medium) {
+      margin-top: 0.3rem;
     }
+  }
 
-    &__value {
-        width: 5.3rem;
-        color: $color-text-grey-dark1;
-        background-color: $color-text-white;
-        padding: .4rem;
-        border-radius: 50px;
-        text-align: center;
-        @extend %unHighlightable;
+  &__element {
+    width: 14rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: $color-text-white;
+    padding: 0.2rem 1rem;
+    margin: 0.4rem 0.2rem;
+    font-size: 1.5rem;
+    border-radius: 5rem;
+    @media only screen and (max-width: $bp-medium) {
+      width: 9rem;
+      flex-direction: column;
+      border-radius: 3rem;
     }
-
-    &__element {
-        width: 14rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: $color-text-white;
-        padding: .2rem 1rem;
-        margin: .4rem .2rem;
-        font-size: 1.5rem;
-        border-radius: 50px;
-    }
+  }
 }
 
 @include effectiveness-styling($bug, $color-bug, "Bug");
