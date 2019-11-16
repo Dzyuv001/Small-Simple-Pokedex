@@ -1,10 +1,18 @@
 .pokedex {
+  position: relative;
   &__ui {
     width: 100%;
     background-color: $color-light-2;
     position: sticky;
     top: 10rem;
     z-index: 30;
+    transform: scale(1);
+    @media only screen and (max-width: $bp-medium) {
+      transform: scaleX(1.1);
+      & * {
+        transform: scaleX(1);
+      }
+    }
   }
 
   &__display {
@@ -13,6 +21,13 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     justify-content: space-evenly;
+    justify-items: center;
     row-gap: 3rem;
+    // @media only screen and (max-width: $bp-medium) {
+    //   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    // }
+    @media only screen and (max-width: $bp-small) {
+      row-gap: 2rem;
+    }
   }
 }

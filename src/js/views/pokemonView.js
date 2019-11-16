@@ -501,7 +501,7 @@ const renderMoveRow = (rowData, isLevelup) => {
 <tr class="table__row">
     ${isLevelup ? `<td class="table__stats-val">${rowData.l}</td>` : ""}
     <td class="table__stats-val">${upCaseFirstChr(rowData.n)}</td>
-    <td class="table__stats-val">
+    <td class="table__stats-val moves__type">
         ${renderTypes([rowData.t])}
     </td>
     <td class="table__stats-val">

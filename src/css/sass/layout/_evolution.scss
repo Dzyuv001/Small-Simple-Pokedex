@@ -1,59 +1,77 @@
 .evolution {
-    grid-column: 1 /-1;
+  grid-column: 1 /-1;
 
-    &__pokemon {
-        // height: 20rem;
-        // width: 25rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+  &__pokemon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-        &-image {
-            margin-bottom: -12%;
-        }
+    &-image {
+      margin-bottom: -12%;
     }
 
-    &__cause {
-        font-size: 1.5rem;
+    &-naming,
+    &-types {
+      width: 100%;
+      text-align: center;
     }
 
-    &__pointer {
-        font-size: 4rem;
-        text-align: center;
-
-        &-1Of2 {
-            transform: rotate(-15deg);
-        }
-
-        &-2Of2 {
-            transform: rotate(15deg);
-        }
-
-        &-1Of3 {
-            transform: rotate(-30deg);
-        }
-
-        &-3Of3 {
-            transform: rotate(30deg);
-        }
+    &-naming {
+      margin: 1rem 0;
     }
 
-    &__type {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 1rem 0;
+    &-types {
+      display: flex;
+      justify-content: space-evenly;
+    }
+  }
+
+  &__requirement {
+    @media only screen and (max-width: $bp-large) {
+      font-size: 150%;
+    }
+  }
+
+  &__cause {
+    font-size: 1.5rem;
+  }
+
+  &__pointer {
+    font-size: 4rem;
+    text-align: center;
+
+    &-1Of2 {
+      transform: rotate(-15deg);
     }
 
-    &__container-row {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+    &-2Of2 {
+      transform: rotate(15deg);
     }
 
-    &__container-column {
-        display: flex;
-        flex-direction: column;
+    &-1Of3 {
+      transform: rotate(-30deg);
     }
 
+    &-3Of3 {
+      transform: rotate(30deg);
+    }
+  }
+
+  &__type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+  }
+
+  &__container-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__container-column {
+    display: flex;
+    flex-direction: column;
+  }
 }

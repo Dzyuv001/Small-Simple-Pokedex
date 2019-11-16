@@ -8,10 +8,18 @@
     grid-column: 1 /-1;
   }
 
+  &__type {
+    display: flex;
+
+  }
+
   &__levelup,
   &__tms,
   &__egg,
   &__tutor {
     width: 95%;
+    @media only screen and (max-width: $bp-large){
+    font-size: 68.75%;
+}
   }
 }

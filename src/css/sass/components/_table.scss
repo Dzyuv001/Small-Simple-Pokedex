@@ -1,59 +1,56 @@
 .table {
-    width: 90%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    // backface-visibility: hidden;
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: collapse;
 
-    &__row,
-    &__heading {
-        border-bottom: 1px solid $color-text-grey-dark1;
+  &__row,
+  &__heading {
+    border-bottom: 1px solid $color-text-grey-dark1;
+  }
+
+  &__heading {
+    font-size: 2rem;
+    @extend %unHighlightable;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__row {
+    height: 3.5rem;
+    padding: 0.5rem 0;
+
+    &-title {
+      color: $color-text-grey-light2;
+      text-align: right;
+      padding: 1rem;
+      @extend %unHighlightable;
     }
 
-    &__heading {
-        font-size: 2rem;
-        @extend %unHighlightable;
+    &-bar {
+      width: 80%;
 
-        &:hover {
-            cursor: pointer;
-        }
+      &-data {
+        width: 50%;
+        height: 2rem;
+        padding: 0.5rem;
+        border-radius: 5px;
+        background-color: green;
+      }
     }
+  }
 
-    &__row {
-        height: 3.5rem;
-        padding: 0.5rem 0;
+  &__stats-val {
+    text-align: center;
+  }
 
-        &-title {
-            color: $color-text-grey-light2;
-            text-align: right;
-            padding: 1rem;
-
-            @extend %unHighlightable;
-        }
-
-        &-bar {
-            width: 80%;
-
-            &-data {
-                width: 50%;
-                height: 2rem;
-                padding: 0.5rem;
-                border-radius: 5px;
-                background-color: green;
-            }
-        }
-    }
-
-    &__stats-val {
-        text-align: center;
-    }
-
-    &__update-field {
-        text-align: end;
-        padding-right: 10%;
-    }
+  &__update-field {
+    text-align: end;
+    padding-right: 10%;
+  }
 }
 
 tbody,
 tfoot {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }

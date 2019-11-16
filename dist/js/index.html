@@ -17,41 +17,264 @@
     <div class="container">
         <div class="container__child">
             <header class="header">
-                <img class="header__logo" src="./img/website-logo.png" alt="">
+                <div class="header__logo">
+                    <h1 class="heading-1 logo__element">Pokedex</h1>
+                    <img class="logo__element logo__img" src="./img/icons/logoPokeball.svg">
+                </div>
                 <section class="search">
-                    <form class="search__form" action="">
-                        <div class="search__field-container">
-                            <input type="text" class="search__field" required="required"
+                    <form class="search__form input__form" action="">
+                        <div class="search__field-container input__field-container">
+                            <input type="text" class="search__field input__field"
                                 placeholder="Enter name or num of pokemon">
-                            <button class="btn search-btn">Search</button>
+                            <button class="btn search__btn">
+                                <svg class=" search__icon">
+                                    <use xlink:href="./img/icons/sprites.svg#icon-search"></use>
+                                </svg>
+                                <span>Search</span>
+                            </button>
                         </div>
-                        <a href="" class="search__more-options link">More Options</a>
+                        <div class="search__more-options">
+                            <label for="chkMoreSearchOptions" class="search__btn-label">Show More Options</label>
+                            <input class="search__chk-btn" type="checkbox" name="chkMoreSearchOptions"
+                                id="chkMoreSearchOptions">
+                            <div class="search__container">
+                                <div class="search__sub-container">
+                                    <div>
+                                        <input type="radio" name="typeOfSearch" id="radSearchName" value="1"
+                                            class="search__name-move input__rad-input" checked>
+                                        <label for="radSearchName" class="search__label input__rad-label">
+                                            <span class="input__rad-btn"></span>
+                                            Pokemon Names
+                                        </label>
+
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="typeOfSearch" id="radSearchMove" value="2"
+                                            class="search__name-move input__rad-input">
+                                        <label for="radSearchMove" class="search__label input__rad-label">
+                                            <span class="input__rad-btn"></span> Pokemon Moves
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" name="typeOfSearch" id="radSearchNameMove" value="3"
+                                            class="search__name-move input__rad-input">
+                                        <label for="radSearchNameMove" class="search__label input__rad-label">
+                                            <span class="input__rad-btn"></span>Both
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="search__sub-container">
+                                    <select class="search__type-1">
+                                        <option class="type" value="0" selected>Type 1</option>
+                                        <option class="type type__1" value="1">Normal</option>
+                                        <option class="type type__2" value="2">Fighting</option>
+                                        <option class="type type__3" value="3">Flying</option>
+                                        <option class="type type__4" value="4">Poison</option>
+                                        <option class="type type__5" value="5">Ground</option>
+                                        <option class="type type__6" value="6">Rock</option>
+                                        <option class="type type__7" value="7">Bug</option>
+                                        <option class="type type__8" value="8">Ghost</option>
+                                        <option class="type type__9" value="9">Steel</option>
+                                        <option class="type type__10" value="10">Fire</option>
+                                        <option class="type type__11" value="11">Water</option>
+                                        <option class="type type__12" value="12">Grass</option>
+                                        <option class="type type__13" value="13">Electric</option>
+                                        <option class="type type__14" value="14">Psychic</option>
+                                        <option class="type type__15" value="15">Ice</option>
+                                        <option class="type type__16" value="16">Dragon</option>
+                                        <option class="type type__17" value="17">Dark</option>
+                                        <option class="type type__18" value="18">Fairy</option>
+                                    </select>
+                                    <select class="search__type-2">
+                                        <option class="type" value="0" selected>Type 2</option>
+                                        <option class="type type__1" value="1">Normal</option>
+                                        <option class="type type__2" value="2">Fighting</option>
+                                        <option class="type type__3" value="3">Flying</option>
+                                        <option class="type type__4" value="4">Poison</option>
+                                        <option class="type type__5" value="5">Ground</option>
+                                        <option class="type type__6" value="6">Rock</option>
+                                        <option class="type type__7" value="7">Bug</option>
+                                        <option class="type type__8" value="8">Ghost</option>
+                                        <option class="type type__9" value="9">Steel</option>
+                                        <option class="type type__10" value="10">Fire</option>
+                                        <option class="type type__11" value="11">Water</option>
+                                        <option class="type type__12" value="12">Grass</option>
+                                        <option class="type type__13" value="13">Electric</option>
+                                        <option class="type type__14" value="14">Psychic</option>
+                                        <option class="type type__15" value="15">Ice</option>
+                                        <option class="type type__16" value="16">Dragon</option>
+                                        <option class="type type__17" value="17">Dark</option>
+                                        <option class="type type__18" value="18">Fairy</option>
+                                    </select>
+                                    <select class="search__move-type">
+                                        <option class="type" value="0" selected>Move Type</option>
+                                        <option class="type type__1" value="1">Normal</option>
+                                        <option class="type type__2" value="2">Fighting</option>
+                                        <option class="type type__3" value="3">Flying</option>
+                                        <option class="type type__4" value="4">Poison</option>
+                                        <option class="type type__5" value="5">Ground</option>
+                                        <option class="type type__6" value="6">Rock</option>
+                                        <option class="type type__7" value="7">Bug</option>
+                                        <option class="type type__8" value="8">Ghost</option>
+                                        <option class="type type__9" value="9">Steel</option>
+                                        <option class="type type__10" value="10">Fire</option>
+                                        <option class="type type__11" value="11">Water</option>
+                                        <option class="type type__12" value="12">Grass</option>
+                                        <option class="type type__13" value="13">Electric</option>
+                                        <option class="type type__14" value="14">Psychic</option>
+                                        <option class="type type__15" value="15">Ice</option>
+                                        <option class="type type__16" value="16">Dragon</option>
+                                        <option class="type type__17" value="17">Dark</option>
+                                        <option class="type type__18" value="18">Fairy</option>
+                                    </select>
+                                    <select class="search__color">
+                                        <option value="0" selected>Color</option>
+                                        <option class="primaryInfo__color--1" value="1">Black</option>
+                                        <option class="primaryInfo__color--2" value="2">Blue</option>
+                                        <option class="primaryInfo__color--3" value="3">Brown</option>
+                                        <option class="primaryInfo__color--4" value="4">Gray</option>
+                                        <option class="primaryInfo__color--5" value="5">Green</option>
+                                        <option class="primaryInfo__color--6" value="6">Pink</option>
+                                        <option class="primaryInfo__color--7" value="7">Purple</option>
+                                        <option class="primaryInfo__color--8" value="8">Red</option>
+                                        <option class="primaryInfo__color--9" value="9">White</option>
+                                        <option class="primaryInfo__color--10" value="10">Yellow</option>
+                                    </select>
+                                    <select class="search__shape">
+                                        <option value="0" selected>Shape</option>
+                                        <option value="1">Ball</option>
+                                        <option value="2">Squiggle</option>
+                                        <option value="3">Fish</option>
+                                        <option value="4">Arms</option>
+                                        <option value="5">Blob</option>
+                                        <option value="6">Upright</option>
+                                        <option value="7">Legs</option>
+                                        <option value="8">Quadruped</option>
+                                        <option value="9">Wings</option>
+                                        <option value="10">Tentacles</option>
+                                        <option value="11">Heads</option>
+                                        <option value="12">Humanoid</option>
+                                        <option value="13">Bug-Wings</option>
+                                        <option value="14">Armor</option>
+                                    </select>
+                                    <select class="search__egg-group">
+                                        <option value="0" selected>Egg Group</option>
+                                        <option value="1">Monster</option>
+                                        <option value="2">Water1</option>
+                                        <option value="9">Water2</option>
+                                        <option value="12">Water3</option>
+                                        <option value="3">Bug</option>
+                                        <option value="4">Flying</option>
+                                        <option value="5">Ground</option>
+                                        <option value="6">Fairy</option>
+                                        <option value="7">Plant</option>
+                                        <option value="8">Humanshape</option>
+                                        <option value="10">Mineral</option>
+                                        <option value="11">Indeterminate</option>
+                                        <option value="13">Ditto</option>
+                                        <option value="14">Dragon</option>
+                                        <option value="15">No-eggs</option>
+                                    </select>
+                                </div>
+                                <div class="search__sub-container">
+                                    <div class="input__checkbox-container">
+                                        <input type="checkbox" class="search__chk--gen input__checkbox-input"
+                                            name="chkGen1" id="chkGen1" value="1">
+                                        <label for="chkGen1" class="search__label input__checkbox-label">
+                                            <span class="input__checkbox-btn"></span>
+                                            Gen 1
+                                        </label>
+                                    </div>
+                                    <div class="input__checkbox-container">
+                                        <input type="checkbox" class="search__chk--gen input__checkbox-input"
+                                            name="chkGen2" id="chkGen2" value="2">
+                                        <label for="chkGen2" class="search__label input__checkbox-label">
+                                            <span class="input__checkbox-btn"></span>
+                                            Gen 2
+                                        </label>
+                                    </div>
+                                    <div class="input__checkbox-container">
+                                        <input type="checkbox" class="search__chk--gen input__checkbox-input"
+                                            name="chkGen3" id="chkGen3" value="3">
+                                        <label for="chkGen3" class="search__label input__checkbox-label">
+                                            <span class="input__checkbox-btn"></span>
+                                            Gen 3
+                                        </label>
+                                    </div>
+                                    <div class="input__checkbox-container">
+                                        <input type="checkbox" class="search__chk--gen input__checkbox-input"
+                                            name="chkGen4" id="chkGen4" value="4">
+                                        <label for="chkGen4" class="search__label input__checkbox-label">
+                                            <span class="input__checkbox-btn"></span>
+                                            Gen 4
+                                        </label>
+                                    </div>
+                                    <div class="input__checkbox-container">
+                                        <input type="checkbox" class="search__chk--gen input__checkbox-input"
+                                            name="chkGen5" id="chkGen5" value="5">
+                                        <label for="chkGen5" class="search__label input__checkbox-label">
+                                            <span class="input__checkbox-btn"></span>
+                                            Gen 5
+                                        </label>
+                                    </div>
+                                    <div class="input__checkbox-container">
+                                        <input type="checkbox" class="search__chk--gen input__checkbox-input"
+                                            name="chkGen6" id="chkGen6" value="6">
+                                        <label for="chkGen6" class="search__label input__checkbox-label">
+                                            <span class="input__checkbox-btn"></span>
+                                            Gen 6
+                                        </label>
+                                    </div>
+                                    <div class="input__checkbox-container">
+                                        <input type="checkbox" class="search__chk--gen input__checkbox-input"
+                                            name="chkGen7" id="chkGen7" value="7">
+                                        <label for="chkGen7" class="search__label input__checkbox-label">
+                                            <span class="input__checkbox-btn"></span>
+                                            Gen 7
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </section>
-                <div class="functions">
-                    <div class="functions__liked"></div>
-                    <div class="functions__team"></div>
-                    <div class="functions__compare"></div>
+                <div class="liked">
+                    <div class="liked__field">
+                        <svg>
+                            <use xlink:href="./img/icons/sprites.svg#icon-like"></use>
+                        </svg>
+                    </div>
+                    <div class="liked__panel">
+                        <ul class="liked__list">
+                        </ul>
+                    </div>
                 </div>
             </header>
-            <section class="popup">
+            <a href="#pokedex" class="btn btn__circle--top">&#x2B06;</a>
+            <div class="popup" id="pokemon">
+                <div class="popup__btn-container">
+                    <a href="#pokedex" class="popup__btn popup__btn-close">X</a>
+                    <a data-value="" class="popup__btn popup__btn-like">
+                        <svg>
+                            <use xlink:href="./img/icons/sprites.svg#icon-like_dislike"></use>
+                        </svg>
+                    </a>
+                </div>
                 <div class="popup__container info">
-                    <h1 class="heading-1 grid__spanAll-width grid__center">Rowlet #722</h1>
                     <section class="primaryInfo__left">
                         <img class="primaryInfo__left-image" src="img/pokemonGifs/722.gif" alt="">
                         <div class="primaryInfo__left-overlay-container">
-
                             <div class="pokemon__data-type">
-                                <a href="#" class="type type__grass">Grass</a>
-                                <a href="#" class="type type__flying">Flying</a>
+                                <a href="#" class="type type__grass"></a>
+                                <a href="#" class="type type__flying"></a>
                             </div>
                         </div>
-
                     </section>
                     <section class="primaryInfo__right">
                         <div class="primaryInfo__right-element">
                             <p class="primaryInfo__right-element-title">Height:</p>
-                            <p class="popup__pokemon-info-elem-data">1'00" 0.3 m</p>
+                            <p class="primaryInfo__right-element-data">1'00" 0.3 m</p>
                         </div>
                         <div class="primaryInfo__right-element">
                             <p class="primaryInfo__right-element-title">Weight:</p>
@@ -67,11 +290,12 @@
                         </div>
                         <div class="primaryInfo__right-element">
                             <p class="primaryInfo__right-element-title">Base Friendship:</p>
-                            <p class="primaryInfo__right-element-data">Data</p>
+                            <p class="primaryInfo__right-element-data">70</p>
                         </div>
                         <div class="primaryInfo__right-element">
                             <p class="primaryInfo__right-element-title">Colours:</p>
-                            <p class="primaryInfo__right-element-data">Data</p>
+                            <p class="primaryInfo__right-element-data"><span
+                                    class=" primaryInfo__color primaryInfo__color-green"> Green</span></p>
                         </div>
                         <div class="primaryInfo__right-element">
                             <p class="primaryInfo__right-element-title">Foot Print:</p>
@@ -79,761 +303,222 @@
                         </div>
                         <div class="primaryInfo__right-element">
                             <p class="primaryInfo__right-element-title">Body Type:</p>
-                            <img src="img/bodyStyle/Body07.png" width="100" height="200" alt="">
+                            <img src="img/bodystyle/Body07.png" alt="">
                         </div>
-
                     </section>
                     <div class="stats">
-                        <section class="stats__base">
+                        <section class="stats__base stats--half">
                             <h2 class="heading-2">Base Stats</h2>
-                            <table class="stats__base-table table">
+                            <h3 class="heading-3">
+                                <span id="lblBaseStats-0" class="stats__tab stats__tab--active">Radar Chart</span>/
+                                <span id="lblBaseStats-1" class="stats__tab">Stats Table</span>
+                            </h3>
+                            <canvas id="elemBaseStats-0"
+                                class="stats__tab-element stats__tab-element--visible stats--half" height="400"
+                                width="400">
+                            </canvas>
+                        </section>
+                        <section class="stats__defense stats--half">
+                            <h2 class="heading-2">Defense</h2>
+                        </section>
+                    </div>
+                    <div class="extra-stats">
+                        <div class="extra-stats__abilities">
+                            <h2 class="heading-2">Abilities</h2>
+                            <table class="moves__levelup table">
                                 <thead>
-                                    <th class="table__heading" colspan="3">Stats</th>
-                                    <th class="table__heading">Min</th>
-                                    <th class="table__heading">Max</th>
+                                    <th class="table__heading">Name</th>
+                                    <th class="table__heading">isHidden</th>
+                                    <th class="table__heading">Description</th>
                                 </thead>
                                 <tbody>
-                                    <tr class="table__row stats__base-hp">
-                                        <td class="table__row-title">HP: </th>
-                                        <td class="table__stats-val">68</td>
-                                        <td class="table__row-bar">
-                                            <div class="table__row-bar-data"></div>
+                                    <tr class="table__row">
+                                        <td class="table__stats-val">Overgrow</td>
+                                        <td class="table__stats-val">false</td>
+                                        <td class="table__stats-val">When a Pokémon with Overgrow uses a Grass-type
+                                            move, the move's power will be increased by 50% if the user has less than or
+                                            equal to ⅓ of its maximum HP remaining.
                                         </td>
-                                        <td class="table__stats-val">246</td>
-                                        <td class="table__stats-val">340</td>
                                     </tr>
-                                    <tr class="table__row stats__base-attack">
-                                        <td class="table__row-title">Attack:</th>
-                                        <td class="table__stats-val">55</td>
-                                        <td class="table__row-bar">
-                                            <div class="table__row-bar-data"></div>
+                                    <tr class="table__row">
+                                        <td class="table__stats-val">Long Reach</td>
+                                        <td class="table__stats-val">true</td>
+                                        <td class="table__stats-val">If the Pokémon uses a contact move, it will not
+                                            activate any effects caused by contact.
                                         </td>
-                                        <td class="table__stats-val">103</td>
-                                        <td class="table__stats-val">229</td>
                                     </tr>
-                                    <tr class="table__row stats__base-defense">
-                                        <td class="table__row-title">Defense:</th>
-                                        <td class="table__stats-val">55</td>
-                                        <td class="table__row-bar">
-                                            <div class="table__row-bar-data"></div>
-                                        </td>
-                                        <td class="table__stats-val">103</td>
-                                        <td class="table__stats-val">229</td>
-                                    </tr>
-                                    <tr class="table__row stats__base-spAtk">
-                                        <td class="table__row-title">Sp. Atk:</th>
-                                        <td class="table__stats-val">50</td>
-                                        <td class="table__row-bar">
-                                            <div class="table__row-bar-data"></div>
-                                        </td>
-                                        <td class="table__stats-val">94</td>
-                                        <td class="table__stats-val">218</td>
-                                    </tr>
-                                    <tr class="table__row stats__base-spDef">
-                                        <td class="table__row-title">Sp. Def:</th>
-                                        <td class="table__stats-val">50</td>
-                                        <td class="table__row-bar">
-                                            <div class="table__row-bar-data"></div>
-                                        </td>
-                                        <td class="table__stats-val">94</td>
-                                        <td class="table__stats-val">218</td>
-                                    </tr>
-                                    <tr class="table__row stats__base-speed">
-                                        <td class="table__row-title">Speed</th>
-                                        <td class="table__stats-val">42</td>
-                                        <td class="table__row-bar">
-                                            <div class="table__row-bar-data"></div>
-                                        </td>
-                                        <td class="table__stats-val">80</td>
-                                        <td class="table__stats-val">201</td>
-                                    </tr>
-                                <tfoot>
-                                    <tr>
-                                        <td class="table__row-title">Total</th>
-                                        <td class="table__stats-val">320</td>
-                                        <th class="table__update-field" colspan="3">At Lvl <input type="number" min="1"
-                                                max="100" placeholder="100">
-                                        </th>
-                                    </tr>
-                                </tfoot>
                                 </tbody>
                             </table>
-                        </section>
-                        <section class="stats__defence ">
+                        </div>
 
-                            <h2 class="heading-2">Defence</h2>
-                        </section>
-<!-- <section class="stats__ev">
-        <h2 class="heading-2">EV Stats</h2>
-
-</section>
-<section class="stats__iv">
-        <h2 class="heading-2">IV Stats</h2>
-
-</section> -->
+                        <div class="extra-stats__evs">
+                            <h2 class="heading-2">EV Stats</h2>
+                        </div>
                     </div>
+
                     <div class="evolution">
                         <h2 class="heading-2">Evolution</h2>
-                        <div class="evolution__pokemon-container">
-                            <div class="evolution__data">
-                                <figure class="evolution__pokemon-img">
-                                    <img src="img/pokemonGifs/722.gif" alt="">
-                                </figure>
-                                <h4 class="evolution__pokemon-name">Rowlet</h4>
-                                <h4 class="evolution__pokemon-number">722</h4>
-                                <div class="evolution__pokemon-types">
-                                    <a href="#" class="type type__grass">Grass</a>
-                                    <a href="#" class="type type__flying">Flying</a>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="evolution__cause">
-                            <p>&rarr;</p>
-                            <p class="evolution__requirement">Level 17</p>
-                        </div>
-                        <div class="evolution__pokemon-container">
-                            <div class="evolution__data">
-                                <figure class="evolution__pokemon-img">
-                                    <img src="img/pokemonGifs/723.gif" alt="">
-                                </figure>
-                                <h4 class="evolution__pokemon-name">Dartix</h4>
-                                <h4 class="evolution__pokemon-number">723</h4>
-                                <div class="evolution__pokemon-types">
-                                    <a href="#" class="type type__grass">Grass</a>
-                                    <a href="#" class="type type__flying">Flying</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="evolution__cause">
-                            <p>&rarr;</p>
-                            <p class="evolution__requirement">Level 34</p>
-                        </div>
-                        <div class="evolution__pokemon-container">
-                            <div class="evolution__data">
-                                <figure class="evolution__pokemon-img">
-                                    <img src="img/pokemonGifs/724.gif" alt="">
-                                </figure>
-                                <h4 class="evolution__pokemon-name">Decidueye</h4>
-                                <h4 class="evolution__pokemon-number">724</h4>
-                                <div class="evolution__pokemon-types">
-                                    <a href="#" class="type type__grass">Grass</a>
-                                    <a href="#" class="type type__ghost">Ghost</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="moves">
-                        <section class="moves__levelup">
-                            <h2 class="heading-2">Moves learned by leveling-up</h2>
-                            <table class="popup__pokemon-moves-levelup table">
-                                <thead>
-                                    <th class="table__heading">Lvl</th>
-                                    <th class="table__heading">Move</th>
-                                    <th class="table__heading">Type</th>
-                                    <th class="table__heading">Category</th>
-                                    <th class="table__heading">Power</th>
-                                    <th class="table__heading">Accuracy</th>
-                                </thead>
-                                <tbody>
-                                    <tr class="table__row">
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                            </table>
-                        </section>
-                        <section class="popup__pokemon-moves-tms">
-                            <h2 class="heading-2">Moves learned from TMs</h2>
-                            <table class="popup__pokemon-moves-levelup table">
-                                <thead>
-                                    <th class="table__heading">Move</th>
-                                    <th class="table__heading">Type</th>
-                                    <th class="table__heading">Category</th>
-                                    <th class="table__heading">Power</th>
-                                    <th class="table__heading">Accuracy</th>
-                                </thead>
-                                <tbody>
-                                    <tr class="table__row">
-
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                            </table>
-                        </section>
-                        <section class="popup__pokemon-moves-egg">
-                            <h2 class="heading-2">Moves learned from Egg</h2>
-                            <table class="popup__pokemon-moves-levelup table">
-                                <thead>
-
-                                    <th class="table__heading">Move</th>
-                                    <th class="table__heading">Type</th>
-                                    <th class="table__heading">Category</th>
-                                    <th class="table__heading">Power</th>
-                                    <th class="table__heading">Accuracy</th>
-                                </thead>
-                                <tbody>
-                                    <tr class="table__row">
-
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                            </table>
-                        </section>
-                        <section class="popup__pokemon-moves-tutor">
-                            <h2 class="heading-2">Moves learned from Tutor</h2>
-                            <table class="popup__pokemon-moves-levelup table">
-                                <thead>
-                                    <th class="table__heading">Move</th>
-                                    <th class="table__heading">Type</th>
-                                    <th class="table__heading">Category</th>
-                                    <th class="table__heading">Power</th>
-                                    <th class="table__heading">Accuracy</th>
-                                </thead>
-                                <tbody>
-                                    <tr class="table__row">
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                                    <tr class="table__row">
-                                        <td class="table__stats-val">Move Name</td>
-                                        <td class="table__stats-val"><a href="#" class="type type__bug">Bug</a></td>
-                                        <td class="table__stats-val">placeholder</td>
-                                        <td class="table__stats-val">1</td>
-                                        <td class="table__stats-val">1</td>
-                                    </tr>
-                            </table>
-                        </section>
-                    </div>
-                    <div class="gain">
-                        <section class="gain__catching">
-                            <p>There is not way to get the started in the wild </p>
-                        </section>
-                        <section class="gain__hatching">
-                            <h2 class="heading-2">Breeding the pokemon </h2>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td class="table__row-title">Egg Group</td>
-                                        <td class="table__stats-val">Flying</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table__row-title">Gender</td>
-                                        <td class="table__stats-val">
-                                            <div>
-                                                <p><span class="gain__hatching-male">87.5% male</span><span
-                                                        class="gain__hatching-female">12.5% female</span> </p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table__row-title">Egg Cycles</td>
-                                        <td class="table__stats-val">15 <span>(3,599–3,855 steps)</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </section>
-
-                    </div>
-
-                </div>
-            </section>
-            <div class="pokedex">
-                <div class="pokedex__ui">
-
-                </div>
-                <div class="pokedex__display">
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/1.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/2.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/3.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/4.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/5.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/6.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/1.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/1.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/1.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/1.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/1.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/1.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/1.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/1.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/1.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/1.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/1.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/1.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pokemon__container">
-                        <svg class="pokemon__liked">
-                            <use xlink:href=""></use>
-                        </svg>
-                        <figure class="pokemon__img">
-                            <img src="img/pokemonGifs/7.gif" alt="">
-                        </figure>
-                        <div class="pokemon__data">
-                            <h4 class="pokemon__data-name">Bulbasboi</h4>
-                            <h4 class="pokemon__data-number">001</h4>
-                            <div class="pokemon__data-type">
-                                <a href="#" class="type type__bug">Bug</a>
-                                <a href="#" class="type type__dark">Dark</a>
-                            </div>
-                        </div>
+                        <h2 class="heading-2 moves__title">Pokemon Moves</h3>
+                            <section class="moves__levelup">
+                                <h3 class="heading-3">Moves learned by leveling-up</h3>
+                                <table class="moves__levelup table">
+                                    <thead>
+                                        <th class="table__heading">Lvl</th>
+                                        <th class="table__heading">Move</th>
+                                        <th class="table__heading">Type</th>
+                                        <th class="table__heading">Category</th>
+                                        <th class="table__heading">Power</th>
+                                        <th class="table__heading">Accuracy</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table__row">
+                                            <td class="table__stats-val">1</td>
+                                            <td class="table__stats-val">Move Name</td>
+                                            <td class="table__stats-val"><a href="#" class="type type__bug"></a>
+                                            </td>
+                                            <td class="table__stats-val"><button
+                                                    class="status status--physical">Physical</button></td>
+                                            <td class="table__stats-val">1</td>
+                                            <td class="table__stats-val">1</td>
+                                        </tr>
+                                        <tr class="table__row">
+                                            <td class="table__stats-val">1</td>
+                                            <td class="table__stats-val">Move Name</td>
+                                            <td class="table__stats-val"><a href="#" class="type type__bug"></a>
+                                            </td>
+                                            <td class="table__stats-val"><button
+                                                    class="status status--special">Special</button>
+                                            </td>
+                                            <td class="table__stats-val">1</td>
+                                            <td class="table__stats-val">1</td>
+                                        </tr>
+                                        <tr class="table__row">
+                                            <td class="table__stats-val">1</td>
+                                            <td class="table__stats-val">Move Name</td>
+                                            <td class="table__stats-val"><a href="#" class="type type__bug"></a>
+                                            </td>
+                                            <td class="table__stats-val"><button
+                                                    class="status status--status">Status</button>
+                                            </td>
+                                            <td class="table__stats-val">1</td>
+                                            <td class="table__stats-val">1</td>
+                                        </tr>
+                                        <tr class="table__row">
+                                            <td class="table__stats-val">1</td>
+                                            <td class="table__stats-val">Move Name</td>
+                                            <td class="table__stats-val"><a href="#" class="type type__bug"></a>
+                                            </td>
+                                            <td class="table__stats-val">placeholder</td>
+                                            <td class="table__stats-val">1</td>
+                                            <td class="table__stats-val">1</td>
+                                        </tr>
+                                        <tr class="table__row">
+                                            <td class="table__stats-val">1</td>
+                                            <td class="table__stats-val">Move Name</td>
+                                            <td class="table__stats-val"><a href="#" class="type type__bug"></a>
+                                            </td>
+                                            <td class="table__stats-val">placeholder</td>
+                                            <td class="table__stats-val">1</td>
+                                            <td class="table__stats-val">1</td>
+                                        </tr>
+                                        <tr class="table__row">
+                                            <td class="table__stats-val">1</td>
+                                            <td class="table__stats-val">Move Name</td>
+                                            <td class="table__stats-val"><a href="#" class="type type__bug"></a>
+                                            </td>
+                                            <td class="table__stats-val">placeholder</td>
+                                            <td class="table__stats-val">1</td>
+                                            <td class="table__stats-val">1</td>
+                                        </tr>
+                                </table>
+                            </section>
+                            <section class="moves__tms">
+                                <h3 class="heading-3">Moves learned from TMs</h3>
+                            </section>
+                            <section class="moves__egg">
+                                <h3 class="heading-3">Moves learned from Egg</h3>
+                            </section>
+                            <section class="moves__tutor">
+                                <h3 class="heading-3">Moves learned from Tutor</h3>
+                            </section>
                     </div>
                 </div>
             </div>
+            <div class="popup" id="compare">
+                <div class="popup__btn-container">
+                    <a href="#pokedex" class="popup__btn popup__btn-close">X</a>
+                </div>
+                <div class="popup__container versus">
+                    <section class="versus__title">VS</section>
+                    <section class="versus__container primaryInfo">
+                    </section>
+                    <h2 class="versus__title heading-2">Effort Values (EVs)</h2>
+                    <section class="versus__container evs">
+                    </section>
+                    <h2 class="versus__title heading-2">Abilities</h2>
+                    <section class="versus__container extra-stats">
+                    </section>
+                    <h2 class="versus__title heading-2">Base Stats</h2>
+                    <h3 class="heading-3">
+                        <span id="lblCompareBaseStats-0" class="stats__tab stats__tab--active">Radar Chart</span>/
+                        <span id="lblCompareBaseStats-1" class="stats__tab">Stats Table</span>
+                    </h3>
+                    <section class="stats__base">
+                        <div id="elemCompareBaseStats-0"
+                            class="versus--center versus__toggle-element versus__toggle-element--visible">
+                            <canvas id="elemCompareRadar" class="" height="400" width="400">
+                            </canvas>
+                        </div>
+                        <section id="elemCompareBaseStats-1"
+                            class="stats__base-compare-table versus__container versus__toggle-element">
+                        </section>
+                    </section>
+                    <h2 class="versus__title heading-2">Damage Multiplier</h2>
+                    <section class="stats__defense test versus__container">
+                    </section>
+                    <h2 class="versus__title heading-2">Moves</h2>
+                    <h3 class="versus__title versus__title--padding-1rem heading-3 ">Moves learned by leveling-up</h3>
+                    <section class="versus__container moves__levelup">
+                    </section>
+                    <h3 class="versus__title versus__title--padding-1rem heading-3">Moves learned from TMs</h3>
+                    <section class="versus__container moves__tms">
+                    </section>
+                    <h3 class="versus__title versus__title--padding-1rem heading-3">Moves learned from Egg</h3>
+                    <section class="versus__container moves__egg">
+                    </section>
+                    <h3 class="versus__title versus__title--padding-1rem heading-3">Moves learned from Tutor</h3>
+                    <section class="versus__container moves__tutor">
+                    </section>
+                </div>
+            </div>
+            <div class="pokedex">
+                <section class="pokedex__ui">
+                    <div class="pokedex__compare compare">
+                        <div class="compare__pokemon">
+                            <div id="comparison__pokemon--1" class="compare__pokemon-container">
+                            </div>
+                        </div>
+                        <button class="compare__btn">VS</button>
+                        <div class="compare__pokemon">
+                            <div id="comparison__pokemon--2" class="compare__pokemon-container">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="pokedex__display">
+                    <!-- <div class="loader">
+                    <svg>
+                        <use xlink:href="./img/icons/sprites.svg#icon-loader"></use>
+                    </svg>
+                </div> -->
+                </div>
+            </div>
         </div>
-        <h1>This is the template website for </h1>
     </div>
     <footer>
-
     </footer>
-<script async type="text/javascript" src="bundle.js"></script></body>
-
-
-<!-- <a href="#" class="type type__bug">Bug</a>
-<a href="#" class="type type__dark">Dark</a>
-<a href="#" class="type type__dragon">Dragon</a>
-<a href="#" class="type type__electric">Electric</a>
-<a href="#" class="type type__fairy">Fairy</a>
-<a href="#" class="type type__fighting">Fighting</a>
-<a href="#" class="type type__fire">Fire</a>
-<a href="#" class="type type__flying">Flying</a>
-<a href="#" class="type type__ghost">Ghost</a>
-<a href="#" class="type type__grass">Grass</a>
-<a href="#" class="type type__ground">Ground</a>
-<a href="#" class="type type__ice">Ice</a>
-<a href="#" class="type type__normal">Normal</a>
-<a href="#" class="type type__poison">Poison</a>
-<a href="#" class="type type__psychic">Psychic</a>
-<a href="#" class="type type__rock">Rock</a>
-<a href="#" class="type type__steel">Steel</a>
-<a href="#" class="type type__water">Water</a> -->
+<script type="text/javascript" src="bundle.js"></script></body>
 
 </html>
