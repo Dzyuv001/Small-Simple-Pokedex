@@ -53,7 +53,7 @@ const renderPrimaryLeft = (data) => {
     return `
     <h1 class="heading-1 grid__spanAll-width grid__center">${upCaseFirstChr(data.name)} #${data.id}</h1>
 <section class="primaryInfo__left">
-<img src="../img/pokemonImages/${genName(data.id, data.uId, data.form)}.png" alt="pokemon">
+<img class="primaryInfo__left-image" src="../img/pokemonImages/${genName(data.id, data.uId, data.form)}.png" alt="pokemon">
     <div class="primaryInfo__left-overlay-container">
         ${renderTypes(data.type)}
     </div>

@@ -1,16 +1,27 @@
+//@media only screen and (max-width: $bp-large){
+//     font-size: 50%;
+// }
+// // 16px is one 1rem default
+// $bp-largest: 75em; //1200px  12/16 = 0.75
+// $bp-large: 68.75em; //1100px 11/16 = 0.6875
+// $bp-medium: 56.25em; //900px 9/16 = 0.5625
+// $bp-small: 37.5em; //600px 6/16 = 0.375
+// $bp-smallest: 31.25em; //500px 5/16 = 0.3125
+
 .moves {
   grid-column: 1 /-1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
   grid-row-gap: 2rem;
-
+  @media only screen and (max-width: $bp-large) {
+    display: block;
+  }
   &__title {
     grid-column: 1 /-1;
   }
 
   &__type {
     display: flex;
-
   }
 
   &__levelup,
@@ -18,8 +29,8 @@
   &__egg,
   &__tutor {
     width: 95%;
-    @media only screen and (max-width: $bp-large){
-    font-size: 68.75%;
-}
+    @media only screen and (max-width: $bp-large) {
+      font-size: 68.75%;
+    }
   }
 }

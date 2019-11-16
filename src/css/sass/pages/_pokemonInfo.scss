@@ -1,21 +1,23 @@
 .info {
-    display: grid;
-    grid-template-columns: 3fr 5fr;
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 2rem;
+  display: grid;
+  grid-template-columns: 3fr 5fr;
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 2rem;
+  @media only screen and (max-width: $bp-large){
+    display: block;
+  }
+  overflow: auto;
 
-    overflow: auto;
+  &--active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 
-    &--active {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
+  &__loading {
+    display: flex;
+  }
 
-    &__loading {
-        display: flex;
-    }
-
-    &__loading *:not(:first-child) {
-        display: none;
-    }
+  &__loading *:not(:first-child) {
+    display: none;
+  }
 }

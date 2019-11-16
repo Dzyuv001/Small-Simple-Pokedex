@@ -1,16 +1,20 @@
-
-
 html {
   scroll-behavior: smooth;
   // this is what 1 rem
-  font-size: 62.5%; // 10 / 16  makes 1rem = to 10px
+  font-size: 75%; // 10 / 16  makes 1rem = to 10px
 
-  @media only screen and (max-width:$bp-large) {
-      font-size: 50%;
+  @media only screen and (max-width: $bp-large) {
+    font-size: 68.75%;
   }
-//   @media only screen and (max-width:$bp-small) {
-//     font-size: 43.75%;
-// }
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 56.25%;
+  }
+  @media only screen and (max-width: $bp-small) {
+    font-size: 37.5%;
+  }
+  @media only screen and (max-width: $bp-smallest) {
+    font-size: 31.25%;
+  }
 }
 
 body {

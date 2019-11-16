@@ -1,148 +1,149 @@
 .primaryInfo {
-    &__left {
-        margin-top: 10%;
-        text-align: center;
-
-        &-image {
-            width: 50%;
-        }
-
-        &-overlay-container {
-            margin-top: -5%;
-            display: flex;
-            justify-content: space-evenly;
-            width: 100%;
-        }
+  &__left {
+    margin-top: 10%;
+    text-align: center;
+    @media only screen and (max-width: $bp-large) {
+      margin-top: 0;
+    }
+    &-image {
+      width: 100%;
+      @media only screen and (max-width: $bp-large) {
+        width: 40%;
+      }
     }
 
-    &__input-container {
-        width: auto;
+    &-overlay-container {
+      margin-top: -5%;
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+    }
+  }
+
+  &__input-container {
+    width: auto;
+  }
+
+  &__right {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: normal;
+    grid-gap: 1.2rem;
+    margin: 1rem;
+    font-family: "Roboto", sans-serif;
+    @media only screen and (max-width: $bp-large) {
+        grid-gap: 3rem;
+        margin: 3rem;
+      }
+    &-text-input {
+      min-width: 12rem;
     }
 
-    &__right {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        justify-items: normal;
-        grid-gap: 1.2rem;
-        margin: 1rem;
-        font-family: 'Roboto', sans-serif;
-
-        &-text-input {
-            min-width: 12rem;
-        }
-
-        &-male,
-        &-female {
-            height: 100%;
-            color: #fff;
-            padding: .1rem 1rem;
-            margin-bottom: .2rem;
-            font-size: 1.4rem;
-        }
-
-        &-male {
-            background-color: royalblue;
-            border-radius: 5px 0 0 5px;
-        }
-
-        &-female {
-            background-color: palevioletred;
-            border-radius: 0 5px 5px 0;
-        }
-
-        &-from {
-            display: flex;
-            justify-content: center;
-
-            &>* {
-                margin: 0 .5rem;
-            }
-        }
-
-
-        &-element {
-            font-size: 1.8rem;
-            text-align: center;
-            border-bottom: 1px solid $color-text-grey-light1;
-
-            &-full-width {
-                grid-column: 1 /-1;
-            }
-
-            &-title {
-                color: $color-text-grey-light2;
-            }
-        }
-
+    &-male,
+    &-female {
+      height: 100%;
+      color: $color-text-white;
+      padding: 0.1rem 1rem;
+      margin-bottom: 0.2rem;
+      font-size: 1.4rem;
     }
 
-    &__color {
-        padding: .2rem .5rem;
-        margin: 2rem;
-
-        &--8 {
-            //red
-            background-color: $color-pokemon-red;
-            color: $color-text-white;
-        }
-
-        &--2 {
-            //blue
-            background-color: $color-pokemon-blue;
-            color: $color-text-white;
-
-        }
-
-        &--10 {
-            //yellow
-            background-color: $color-pokemon-yellow;
-            color: $color-text-grey-dark1
-        }
-
-        &--5 {
-            //green
-            background-color: $color-pokemon-green;
-            color: $color-text-white;
-
-        }
-
-        &--1 {
-            //black
-            background-color: $color-pokemon-black;
-            color: $color-text-white;
-
-        }
-
-        &--3 {
-            //brown
-            background-color: $color-pokemon-brown;
-            color: $color-text-white;
-
-        }
-
-        &--7 {
-            //purple
-            background-color: $color-pokemon-purple;
-            color: $color-text-white;
-
-        }
-
-        &--4 {
-            //gray
-            background-color: $color-pokemon-gray;
-            color: $color-text-grey-dark1
-        }
-
-        &--9 {
-            //white
-            background-color: $color-pokemon-white;
-            color: $color-text-grey-dark1;
-        }
-
-        &--6 {
-            //pink
-            background-color: $color-pokemon-pink;
-            color: $color-text-white;
-        }
+    &-male {
+      background-color: $color-male;
+      border-radius: 5px 0 0 5px;
     }
+
+    &-female {
+      background-color: $color-female;
+      border-radius: 0 5px 5px 0;
+    }
+
+    &-from {
+      display: flex;
+      justify-content: center;
+
+      & > * {
+        margin: 0 0.5rem;
+      }
+    }
+
+    &-element {
+      font-size: 1.8rem;
+      text-align: center;
+      border-bottom: 1px solid $color-text-grey-light1;
+
+      &-full-width {
+        grid-column: 1 /-1;
+      }
+
+      &-title {
+        color: $color-text-grey-light2;
+      }
+    }
+  }
+
+  &__color {
+    padding: 0.2rem 0.5rem;
+    margin: 2rem;
+
+    &--8 {
+      //red
+      background-color: $color-pokemon-red;
+      color: $color-text-white;
+    }
+
+    &--2 {
+      //blue
+      background-color: $color-pokemon-blue;
+      color: $color-text-white;
+    }
+
+    &--10 {
+      //yellow
+      background-color: $color-pokemon-yellow;
+      color: $color-text-grey-dark1;
+    }
+
+    &--5 {
+      //green
+      background-color: $color-pokemon-green;
+      color: $color-text-white;
+    }
+
+    &--1 {
+      //black
+      background-color: $color-pokemon-black;
+      color: $color-text-white;
+    }
+
+    &--3 {
+      //brown
+      background-color: $color-pokemon-brown;
+      color: $color-text-white;
+    }
+
+    &--7 {
+      //purple
+      background-color: $color-pokemon-purple;
+      color: $color-text-white;
+    }
+
+    &--4 {
+      //gray
+      background-color: $color-pokemon-gray;
+      color: $color-text-grey-dark1;
+    }
+
+    &--9 {
+      //white
+      background-color: $color-pokemon-white;
+      color: $color-text-grey-dark1;
+    }
+
+    &--6 {
+      //pink
+      background-color: $color-pokemon-pink;
+      color: $color-text-white;
+    }
+  }
 }
