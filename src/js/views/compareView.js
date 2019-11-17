@@ -205,7 +205,7 @@ const renderStatsRadar = pokeData => {
       }
     }
   };
-
+  if (radarChart) radarChart.destroy();
   let radarChart = new Chart(chart, {
     type: "radar",
     data: dataLiteracy,

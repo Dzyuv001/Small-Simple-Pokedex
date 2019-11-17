@@ -66,7 +66,7 @@ const renderPokemon = (form, likes) => {
         </div>
         <figure class="pokemon__img">
             <a class="pokemon__link" href="?type=pokemon&id=${e.uId}#pokemon">
-            <img src="../img/pokemonImages/${genName(e.id, e.uId, e.f)}.png" alt="pokemon">
+            <img src="../img/pokemonImages/${genName(e.id, e.uId, e.f)}.png" alt="${e.n}">
             </a>
         </figure>
         <div class="pokemon__data">
@@ -81,11 +81,11 @@ const renderPokemon = (form, likes) => {
     </div>`;
     });
     if (form.length > 1) {
-        markup += `<div class="pokemon__rad-container">`;
+        markup += `<form class="pokemon__rad-container">`;
         form.forEach((e, i) => {
             markup += `<input name="${e.id}" class="pokemon__rad" data-value="${e.uId}" id="rad__Id--${e.uId}" type="radio" name="pokemon" ${i < 1 ? 'checked="checked"' : ""}>`;
         });
-        markup += "</div>";
+        markup += "</form>";
     }
     markup += `
 </div>`;

@@ -64,7 +64,6 @@ const controlPokemon = async () => {
       }, 4000);
     } catch (error) {
       console.log(error);
-      alert("error processing pokemon data!");
     }
   }
 };
@@ -186,6 +185,7 @@ document.addEventListener("click", function(e) {
     );
   }
   if (e.target && e.target.className.includes("btn__circle--top")) {
+    e.preventDefault();
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
   }
