@@ -8,9 +8,8 @@
   &__child {
     margin: 8rem auto;
     max-width: 100rem;
+    border-radius: 2rem 2rem 0 0;
     background-color: #eee;
-    border-radius: 20px;
-    overflow: hidden;
     @media only screen and (max-width: $bp-medium) {
       margin: 0;
       border-radius: 0;

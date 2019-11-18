@@ -15,15 +15,14 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-content: space-between;
-  height: 10rem;
+  height: 14rem;
+  border-radius: 2rem 2rem 0 0;
   padding: 2rem 3rem 0 3rem;
   background-color: $color-light-1;
   z-index: 50;
   @media only screen and (max-width: $bp-medium) {
     grid-row-gap: 1rem;
-    // grid-template-columns: repeat(2, 2fr) 1fr repeat(2, 2fr);
     grid-template-columns: 3fr repeat(3, 1fr) 3fr;
-
     grid-template-rows: 4rem 5rem;
   }
   &__logo {
@@ -180,21 +179,26 @@
 }
 
 .search {
+  display: block;
   position: relative;
   max-width: 40rem;
   @media only screen and (max-width: $bp-medium) {
     grid-row: 2/3;
-    grid-column: 1/5;
+    grid-column: 1/6;
+    width: 100%;
   }
   &__form {
     visibility: visible;
+    display: block;
+    @media only screen and (max-width: $bp-medium) {
+      display: flex;
+      width: max-content;
+    }
   }
 
   &__btn {
     display: flex;
     align-items: flex-end;
-    @media only screen and (max-width: $bp-medium) {
-    }
     &-text {
       display: block;
       @media only screen and (max-width: $bp-medium) {
@@ -211,9 +215,17 @@
   }
 
   &__more-options {
+    display: block;
     position: relative;
     width: auto;
     height: 0;
+    @media only screen and (max-width: $bp-medium) {
+      display: inline;
+      align-self: top;
+      font-size: 1.7rem;
+      margin: 1.4rem;
+      width: 20rem;
+    }
   }
 
   &__container {
@@ -226,12 +238,23 @@
     border-radius: 20px;
     padding: 2rem;
     margin-top: 1.5rem;
+    margin-left: 0;
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
     transition: all 0.2s ease-in-out;
     opacity: 0;
     transform: scale(0.4);
     transform-origin: 10% 10%;
     @extend %unHighlightable;
+    @media only screen and (max-width: $bp-medium) {
+      margin-left: -100%;
+      // position: fixed;
+      // top: 20%;
+      // left: 20%;
+      // transform: translate(-50%, -50%);
+      // width: 60vw;
+      // height: auto;
+      // transform-origin: 50% 50%;
+    }
   }
 
   &__sub-container {
@@ -253,6 +276,7 @@
     pointer-events: auto;
     visibility: visible;
     transform: scale(1);
+  
   }
 
   &__btn-label {
@@ -276,6 +300,9 @@
     display: flex;
     transition: all 0.2s ease-in-out;
     margin: 1rem 0;
+    @media only screen and (max-width: $bp-medium) {
+      display: inline-flex;
+    }
 
     &:focus-within {
       transform: scale(1.02) translateY(-0.3rem);
