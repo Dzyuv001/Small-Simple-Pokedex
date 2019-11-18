@@ -175,184 +175,178 @@ window.addEventListener("load", () => {
 
 document.addEventListener("click", function(e) {
   e.stopPropagation();
-  if (e.target.className.includes("table__sortable")) {
-    // the data value property will contain a two values split with a "-"
-    let dataValueArray = e.target.getAttribute("data-value").split("-");
-    util.sortTable(
-      dataValueArray[0],
-      e.target.parentNode.parentNode.parentNode.id,
-      dataValueArray[1]
-    );
-  }
-  if (e.target && e.target.className.includes("btn__circle--top")) {
-    e.preventDefault();
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  }
 
-  if (e.target && e.target.className.includes("popup__btn-close")) {
-    e.preventDefault();
-    e.target.parentElement.parentElement.classList.toggle("live");
-  }
+  if (e.target) {
+    if (e.target.className.includes("table__sortable")) {
+      // the data value property will contain a two values split with a "-"
+      let dataValueArray = e.target.getAttribute("data-value").split("-");
+      util.sortTable(
+        dataValueArray[0],
+        e.target.parentNode.parentNode.parentNode.id,
+        dataValueArray[1]
+      );
+    }
+    if (e.target.className.includes("btn__circle--top")) {
+      e.preventDefault();
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
 
-  if (e.target && e.target.parentNode.className.includes("pokemon__link")) {
-    e.preventDefault();
-    window.history.pushState("", "Pokemon Name", e.target.parentNode.href);
-    controlPokemon();
-  }
+    if (e.target.className.includes("popup__btn-close")) {
+      e.preventDefault();
+      e.target.parentElement.parentElement.classList.toggle("live");
+    }
 
-  if (e.target && e.target.className.includes("compare__btn")) {
-    if (state.compare) {
-      const compareIds = state.compare.getPokemonIdes();
-      if (compareIds[0] != "" && compareIds[1] != "") {
-        const currentURL = util.getPathFromUrl(window.location.href);
-        const queryString = `?type=compare&pokemon1=${compareIds[0]}&pokemon2=${compareIds[1]}#compare`;
-        const fullURL = currentURL + queryString;
-        window.history.pushState("", "Versus Mode", fullURL);
-        controlCompare();
+    if (e.target.parentNode.className.includes("pokemon__link")) {
+      e.preventDefault();
+      window.history.pushState("", "Pokemon Name", e.target.parentNode.href);
+      controlPokemon();
+    }
+
+    if (e.target.className.includes("compare__btn")) {
+      if (state.compare) {
+        const compareIds = state.compare.getPokemonIdes();
+        if (compareIds[0] != "" && compareIds[1] != "") {
+          const currentURL = util.getPathFromUrl(window.location.href);
+          const queryString = `?type=compare&pokemon1=${compareIds[0]}&pokemon2=${compareIds[1]}#compare`;
+          const fullURL = currentURL + queryString;
+          window.history.pushState("", "Versus Mode", fullURL);
+          controlCompare();
+        }
+      } else {
+        alert("errro");
       }
-    } else {
-      alert("errro");
     }
-  }
 
-  if (
-    e.target &&
-    (e.target.className.includes("pokemon__vs") ||
-      e.target.className.includes("liked__vs"))
-  ) {
-    const uId = e.target.getAttribute("data-value");
-    prepComparison(uId);
-  }
-
-  if (e.target && e.target.className.includes("popup__btn-like")) {
-    const uId = e.target.getAttribute("data-value");
-    pokemonView.toggleLike(state.likes.isLiked(uId));
-    controlLikes(uId);
-  }
-
-  if (e.target && e.target.className.includes("pokemon__liked")) {
-    const uId = e.target.getAttribute("data-value");
-    controlLikes(uId);
-  }
-
-  if (e.target && e.target.className.includes("compare__remove-btn")) {
-    e.preventDefault();
-    const container = e.target.getAttribute("data-value");
-    clearComparisonContainer(container);
-  }
-
-  if (e.target && e.target.className.includes("liked__remove")) {
-    const uId = e.target.getAttribute("data-value");
-    controlLikes(uId);
-  }
-
-  if (
-    e.target &&
-    e.target.className.includes("pokemon__rad") &&
-    !e.target.className.includes("pokemon__rad-container")
-  ) {
-    const id = e.target.getAttribute("data-value");
-    const elem = e.target.parentNode.parentNode.querySelectorAll(
-      ".pokemon__sub-container"
-    );
-    elem.forEach(e => {
-      e.classList.add("pokemon__sub-container--visible");
-    });
-    document
-      .getElementById(`pokemon__Id--${id}`)
-      .classList.remove("pokemon__sub-container--visible");
-  }
-
-  if (e.target && e.target.className.includes("live")) {
-    e.target.classList.remove("live");
-  }
-
-  if (e.target && e.target.className.includes("pokedex__loadMore")) {
-    state.search.getSearchStartEnd();
-    searchView.renderPokedex(
-      state.search.result,
-      state.search.start,
-      state.search.end,
-      state.search.max,
-      state.likes.likes
-    );
-  }
-
-  if (e.target && e.target.className.includes("primary__btn")) {
-    e.preventDefault();
-    const growthRate = e.target.getAttribute("data-value");
-    const txtExp = document.getElementById("txtExp");
-    let level = txtExp.value;
-    let expNeed = state.pokemon.getExpNeededForLevel(growthRate, level);
-    const txtExpNeeded = document.getElementById("txtExpNeeded");
-    txtExpNeeded.innerHTML = "  " + expNeed + " exp";
-  }
-
-  if (
-    e.target &&
-    e.target.className.includes("effectiveness__tab") &&
-    !e.target.className.includes("effectiveness__tab--active")
-  ) {
-    const id = e.target.getAttribute("id");
-    const id_0 = id.split("-")[0];
-    let lblEffectivenessString, tblEffectivenessString;
-    if (id_0 == "lblEffectiveness") {
-      lblEffectivenessString = "lblEffectiveness-";
-      tblEffectivenessString = "tblEffectiveness-";
-    } else {
-      const idSection = id_0.split("_")[1];
-      lblEffectivenessString = `lblCompareEffectiveness_${idSection}-`;
-      tblEffectivenessString = `tblCompareEffectiveness_${idSection}-`;
+    if (
+      e.target.className.includes("pokemon__vs") ||
+      e.target.className.includes("liked__vs")
+    ) {
+      const uId = e.target.getAttribute("data-value");
+      prepComparison(uId);
     }
-    const elementId = id.split("-")[1];
-    const otherId = elementId == 1 ? 0 : 1;
-    document
-      .getElementById(lblEffectivenessString + elementId)
-      .classList.add("effectiveness__tab--active");
-    document
-      .getElementById(tblEffectivenessString + elementId)
-      .classList.add("effectiveness--visible");
-    document
-      .getElementById(lblEffectivenessString + otherId)
-      .classList.remove("effectiveness__tab--active");
-    document
-      .getElementById(tblEffectivenessString + otherId)
-      .classList.remove("effectiveness--visible");
-  }
 
-  if (
-    e.target &&
-    e.target.className.includes("stats__tab") &&
-    !e.target.className.includes("stats__tab--active")
-  ) {
-    const id = e.target.getAttribute("id");
-    const id_0 = id.split("-")[0];
-    let elemClass;
-    let lblStatsString, elemStatsString;
-    if (id_0 == "lblBaseStats") {
-      lblStatsString = "lblBaseStats-";
-      elemStatsString = "elemBaseStats-";
-      elemClass = "stats__tab-element--visible";
-    } else {
-      lblStatsString = "lblCompareBaseStats-";
-      elemStatsString = `elemCompareBaseStats-`;
-      elemClass = "versus__toggle-element--visible";
+    if (e.target.className.includes("popup__btn-like")) {
+      const uId = e.target.getAttribute("data-value");
+      pokemonView.toggleLike(state.likes.isLiked(uId));
+      controlLikes(uId);
     }
-    const elementId = id.split("-")[1];
-    const otherId = elementId == 1 ? 0 : 1;
-    document
-      .getElementById(lblStatsString + elementId)
-      .classList.add("stats__tab--active");
-    document
-      .getElementById(elemStatsString + elementId)
-      .classList.add(elemClass);
-    document
-      .getElementById(lblStatsString + otherId)
-      .classList.remove("stats__tab--active");
-    document
-      .getElementById(elemStatsString + otherId)
-      .classList.remove(elemClass);
+
+    if (e.target.className.includes("pokemon__liked") || e.target.className.includes("liked__remove") ) {
+      const uId = e.target.getAttribute("data-value");
+      controlLikes(uId);
+    }
+
+    if (e.target.className.includes("compare__remove-btn")) {
+      e.preventDefault();
+      const container = e.target.getAttribute("data-value");
+      clearComparisonContainer(container);
+    }
+
+    if (
+      e.target.className.includes("pokemon__rad") &&
+      !e.target.className.includes("pokemon__rad-container")
+    ) {
+      const id = e.target.getAttribute("data-value");
+      const elem = e.target.parentNode.parentNode.querySelectorAll(
+        ".pokemon__sub-container"
+      );
+      elem.forEach(e => {
+        e.classList.add("pokemon__sub-container--visible");
+      });
+      document
+        .getElementById(`pokemon__Id--${id}`)
+        .classList.remove("pokemon__sub-container--visible");
+    }
+
+    if (e.target.className.includes("live")) {
+      e.target.classList.remove("live");
+    }
+
+    if (e.target.className.includes("pokedex__loadMore")) {
+      state.search.getSearchStartEnd();
+      searchView.renderPokedex(
+        state.search.result,
+        state.search.start,
+        state.search.end,
+        state.search.max,
+        state.likes.likes
+      );
+    }
+
+    if (e.target.className.includes("primary__btn")) {
+      e.preventDefault();
+      const growthRate = e.target.getAttribute("data-value");
+      const txtExp = document.getElementById("txtExp");
+      let level = txtExp.value;
+      let expNeed = state.pokemon.getExpNeededForLevel(growthRate, level);
+      const txtExpNeeded = document.getElementById("txtExpNeeded");
+      txtExpNeeded.innerHTML = "  " + expNeed + " exp";
+    }
+
+    if (
+      e.target.className.includes("effectiveness__tab") &&
+      !e.target.className.includes("effectiveness__tab--active")
+    ) {
+      const id = e.target.getAttribute("id");
+      const id_0 = id.split("-")[0];
+      let lblEffectivenessString, tblEffectivenessString;
+      if (id_0 == "lblEffectiveness") {
+        lblEffectivenessString = "lblEffectiveness-";
+        tblEffectivenessString = "tblEffectiveness-";
+      } else {
+        const idSection = id_0.split("_")[1];
+        lblEffectivenessString = `lblCompareEffectiveness_${idSection}-`;
+        tblEffectivenessString = `tblCompareEffectiveness_${idSection}-`;
+      }
+      const elementId = id.split("-")[1];
+      const otherId = elementId == 1 ? 0 : 1;
+      document
+        .getElementById(lblEffectivenessString + elementId)
+        .classList.add("effectiveness__tab--active");
+      document
+        .getElementById(tblEffectivenessString + elementId)
+        .classList.add("effectiveness--visible");
+      document
+        .getElementById(lblEffectivenessString + otherId)
+        .classList.remove("effectiveness__tab--active");
+      document
+        .getElementById(tblEffectivenessString + otherId)
+        .classList.remove("effectiveness--visible");
+    }
+
+    if (
+      e.target.className.includes("stats__tab") &&
+      !e.target.className.includes("stats__tab--active")
+    ) {
+      const id = e.target.getAttribute("id");
+      const id_0 = id.split("-")[0];
+      let elemClass;
+      let lblStatsString, elemStatsString;
+      if (id_0 == "lblBaseStats") {
+        lblStatsString = "lblBaseStats-";
+        elemStatsString = "elemBaseStats-";
+        elemClass = "stats__tab-element--visible";
+      } else {
+        lblStatsString = "lblCompareBaseStats-";
+        elemStatsString = `elemCompareBaseStats-`;
+        elemClass = "versus__toggle-element--visible";
+      }
+      const elementId = id.split("-")[1];
+      const otherId = elementId == 1 ? 0 : 1;
+      document
+        .getElementById(lblStatsString + elementId)
+        .classList.add("stats__tab--active");
+      document
+        .getElementById(elemStatsString + elementId)
+        .classList.add(elemClass);
+      document
+        .getElementById(lblStatsString + otherId)
+        .classList.remove("stats__tab--active");
+      document
+        .getElementById(elemStatsString + otherId)
+        .classList.remove(elemClass);
+    }
   }
 });
 
