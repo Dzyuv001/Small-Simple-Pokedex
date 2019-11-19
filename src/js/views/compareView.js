@@ -64,13 +64,32 @@ const renderType = (type, largeButton) => {
     typesMarkup += largeButton
       ? `<a data-value="${typelphabetIds[e]}" href="" class="type type__${e}"></a>`
       : `<p class="type--small type__${e}"></p>`;
-    // typesMarkup += `<button href="#" class="type type__${elem}"></button>`
   });
   return typesMarkup;
 };
 
+export const clearMarkup = () => {
+  document.querySelector(".versus__container.primaryInfo").innerHTML = "";
+  document.querySelector(".versus__container.extra-stats").innerHTML = "";
+  document.querySelector(".versus__container.evs").innerHTML = "";
+  document.querySelector(".stats__defense.test").innerHTML = "";
+  document.querySelector(
+    ".stats__base-compare-table.versus__container"
+  ).innerHTML = "";
+  const tableContainers = [
+    ".moves__levelup",
+    ".moves__tms",
+    ".moves__egg",
+    ".moves__tutor"
+  ];
+  for (let i = 0; i < 4; i++) {
+    document.querySelector(
+      `.versus__container${tableContainers[i]}`
+    ).innerHTML = "";
+  }
+};
+
 export const renderCompare = pokeData => {
-  console.log("the pokeData is ", pokeData);
   for (let i = 0; i <= 1; i++) {
     document.querySelector(
       ".versus__container.primaryInfo"
@@ -101,7 +120,9 @@ export const renderCompare = pokeData => {
 const renderPrimary = pokeData => {
   const htmlMarkup = `
 <section class="versus__info primaryInfo">
-    <h1 class="heading-1">${upCaseFirstChr(pokeData.name)} #${pokeData.id}</h1>
+    <h1 class="heading-1 versus__name"><span>${upCaseFirstChr(
+      pokeData.name
+    )}</span> <span>#${pokeData.id}</span></h1>
     <img class="primaryInfo__left-image" src="../img/pokemonImages/${genName(
       pokeData.id,
       pokeData.uId,
@@ -117,7 +138,7 @@ const renderPrimary = pokeData => {
   return htmlMarkup;
 };
 
-export const updateStatsMinMax = (values,index) => {
+export const updateStatsMinMax = (values, index) => {
   const tableRows = document.querySelectorAll(`#tblCompareStats-${index}`);
   tableRows.forEach(elem => {
     const tempTitle = elem.getAttribute("data-value");
@@ -324,7 +345,10 @@ const renderAbilities = abilities => {
 const renderEffectivenessMarkup = (keyName, damageNType) => {
   let effectiveTableRow = `
 <tr class="table__row">
-    <td class="effectiveness__title table__row-title ">${keyName.replace(/_/g," ")}: </td>
+    <td class="effectiveness__title table__row-title ">${keyName.replace(
+      /_/g,
+      " "
+    )}: </td>
     <td class="effectiveness__container">
         ${buildContainers(damageNType)}
     </td>

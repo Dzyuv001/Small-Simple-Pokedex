@@ -75,13 +75,15 @@ const controlCompare = async () => {
   if (queryString) {
     //add loader
     base.renderLoader(base.elements.comparePopupChild);
+    base.elements.comparePopupChild.classList.add("info__loading");
     if (!state.compare) state.compare = new Compare(queryString);
+    compareView.clearMarkup();
     try {
       await state.compare.getCompareData();
       //remove loader
       setTimeout(() => {
         base.removeLoader(base.elements.comparePopupChild);
-        base.elements.pokemonPopupChild.classList.remove("info__loading");
+        base.elements.comparePopupChild.classList.remove("info__loading");
         compareView.renderCompare(state.compare.pokeComp);
       }, 4000);
     } catch (error) {
@@ -128,8 +130,7 @@ const controlLikes = uId => {
     //add the element
     likesView.renderLike(newLike);
   } else {
-    // if liked
-    //save like data
+    // if liked save like data
     state.likes.storeData();
     //remove the like from the Likes Array on the Likes object
     state.likes.deleteLike(uId);
@@ -232,7 +233,10 @@ document.addEventListener("click", function(e) {
       controlLikes(uId);
     }
 
-    if (e.target.className.includes("pokemon__liked") || e.target.className.includes("liked__remove") ) {
+    if (
+      e.target.className.includes("pokemon__liked") ||
+      e.target.className.includes("liked__remove")
+    ) {
       const uId = e.target.getAttribute("data-value");
       controlLikes(uId);
     }

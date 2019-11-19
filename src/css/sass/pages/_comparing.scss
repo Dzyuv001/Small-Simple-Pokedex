@@ -14,6 +14,15 @@
     }
   }
 
+  &__name {
+    display: block;
+    @media only screen and (max-width: $bp-large) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
   &__table {
     margin: 0 1rem;
   }
