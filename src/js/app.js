@@ -411,7 +411,7 @@ document.addEventListener("keyup", e => {
         // used to see which pokemons
         const pokemonIndex = activeElement.split("-")[1];
         state.compare.setMinMax(statLevel, pokemonIndex);
-        compareView.updateStatsMinMax(state.compare.getMinMax());
+        compareView.updateStatsMinMax(state.compare.getMinMax(pokemonIndex));
         break;
       default:
         alert("A non-standard value has ocurred");
