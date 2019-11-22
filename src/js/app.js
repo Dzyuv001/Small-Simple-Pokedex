@@ -8,6 +8,7 @@ import * as searchView from "./views/searchView";
 import * as pokemonView from "./views/pokemonView";
 import * as compareView from "./views/compareView";
 import * as likesView from "./views/likeView";
+import * as toastView from "./views/toastView";
 import * as base from "./views/base";
 //https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
 
@@ -22,8 +23,7 @@ const controlSearch = async searched => {
         state.search.setQuery(query);
       }
       if (state.search.isNewQuery()) {
-        searchView.clearResult();
-
+        // searchView.clearResult();
         base.renderLoader(base.elements.pokedexDisplay);
         state.search.getResults();
         setTimeout(() => {
@@ -176,7 +176,6 @@ window.addEventListener("load", () => {
 
 document.addEventListener("click", function(e) {
   e.stopPropagation();
-
   if (e.target) {
     if (e.target.className.includes("table__sortable")) {
       // the data value property will contain a two values split with a "-"
@@ -215,10 +214,9 @@ document.addEventListener("click", function(e) {
           controlCompare();
         }
       } else {
-        alert("errro");
+        toastView.renderToast("Text");
       }
     }
-
     if (
       e.target.className.includes("pokemon__vs") ||
       e.target.className.includes("liked__vs")
@@ -365,6 +363,7 @@ window.onscroll = e => {
   const percentStateScroll = (state.scrollY / innerHeight) * 100;
   const percentScrollTop = (scrollTop / innerHeight) * 100;
   if (
+    // used to change the size of the pokemon being displayed
     state.scrollY == 0 ||
     percentStateScroll - percentScrollTop > 20 ||
     percentScrollTop - percentStateScroll > 20
@@ -381,6 +380,7 @@ window.onscroll = e => {
     }
   }
   if (scrollTop >= rem_4) {
+    //used to show the scroll up screen
     document
       .querySelector(".btn__circle--top")
       .classList.add("btn__circle--top-visible");
@@ -398,29 +398,30 @@ base.elements.searchBtn.addEventListener("click", e => {
 
 document.addEventListener("keyup", e => {
   if (e.keyCode === 13) {
+    //enter key event
     const activeElement = document.activeElement.getAttribute("id");
-    console.log("the active element", activeElement);
     switch (activeElement) {
-      case "txtLevelCalculator":
+      case "txtLevelCalculator": // used to calculate stats for a single pokemon
         const statLevel = pokemonView.getStatsLevel();
         state.pokemon.setMinMax(statLevel);
         pokemonView.updateStatsMinMax(state.pokemon.getMinMax());
         break;
       case "txtCompareLevelCalculator-0":
       case "txtCompareLevelCalculator-1":
-        // used to see which pokemons
+        // used to see which pokemons in the compare popup
         const pokemonIndex = activeElement.split("-")[1];
         state.compare.setMinMax(statLevel, pokemonIndex);
         compareView.updateStatsMinMax(state.compare.getMinMax(pokemonIndex));
         break;
       default:
-        alert("A non-standard value has ocurred");
+        e.preventDefault();
         break;
     }
   }
 });
 
 const respondToQueryString = () => {
+  //if there is a query string, the a response should be generated based on said query
   const queryString = util.getURLParams(document.URL);
   switch (queryString.type) {
     case "pokemon":
@@ -435,6 +436,7 @@ const respondToQueryString = () => {
 };
 
 const init = () => {
+  // entry point to application
   const state = {};
   window.state = state;
   state.scrollY = 0;

@@ -21,16 +21,7 @@ export const getInput = () => {//used to get the search criteria
     });
     return searchCriteria;
 };
-
-export const clearInput = () => {
-
-}
-
 export const clearResult = () => {
-
-}
-
-const toggleLikes = (uId) => {
 
 }
 

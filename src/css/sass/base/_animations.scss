@@ -67,3 +67,47 @@
     fill: $color-blue-secondary;
   }
 }
+
+@keyframes flyIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    bottom: -25%;
+  }
+
+  95% {
+    opacity: 1;
+    visibility: visible;
+    bottom: 60%;
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+    bottom: 50%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

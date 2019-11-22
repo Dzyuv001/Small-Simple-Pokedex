@@ -1,0 +1,22 @@
+.toast {
+    min-width: 30%;
+    background: $color-white;
+    text-align: center;
+    position: fixed;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    bottom: 50%;
+    left:50%;
+    z-index:100;
+    visibility: hidden;
+    opacity: 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  &__text {
+    
+
+  }
+  &--show {
+      visibility: visible;
+      animation: fadeIn .5s ease-in-out, fadeOut .5s 4s ease-in-out;
+  }
+}
