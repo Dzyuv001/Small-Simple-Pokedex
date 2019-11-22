@@ -27,11 +27,12 @@ export default class Compare {
     }
   }
 
-getComparisonIds(){
-  return [this.pokeComp[0].uId,this.pokeComp[1].uId ]
-}
+  getComparisonIds() {
+    return [this.pokeComp[0].uId, this.pokeComp[1].uId];
+  }
 
-  isReadyForComparison() {//check if the compareson popup can be shown
+  isReadyForComparison() {
+    //check if the compareson popup can be shown
     return this.pokeComp[0].id != "" && this.pokeComp[1].id != "";
   }
 

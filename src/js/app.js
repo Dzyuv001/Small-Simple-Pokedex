@@ -60,7 +60,7 @@ const controlPokemon = async () => {
           state.pokemon.pokeData,
           state.likes.isLiked(state.pokemon.pokeData.primary.uId)
         );
-      }, 4000);
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -208,17 +208,15 @@ document.addEventListener("click", function(e) {
     }
 
     if (e.target.className.includes("compare__btn")) {
-      if (state.compare) {
-        if (state.compare.isReadyForComparison()) {
-          const currentURL = util.getPathFromUrl(window.location.href);
-          const comparisonUIds = state.compare.getComparisonIds();
-          const queryString = `?type=compare&pokemon1=${comparisonUIds[0]}&pokemon2=${comparisonUIds[1]}#compare`;
-          const fullURL = currentURL + queryString;
-          window.history.pushState("", "Versus Mode", fullURL);
-          controlCompare();
-        }
+      if (state.compare && state.compare.isReadyForComparison()) {
+        const currentURL = util.getPathFromUrl(window.location.href);
+        const comparisonUIds = state.compare.getComparisonIds();
+        const queryString = `?type=compare&pokemon1=${comparisonUIds[0]}&pokemon2=${comparisonUIds[1]}#compare`;
+        const fullURL = currentURL + queryString;
+        window.history.pushState("", "Versus Mode", fullURL);
+        controlCompare();
       } else {
-        toastView.renderToast("Text");
+        toastView.renderToast("Two pokemon must be selected for comparison");
       }
     }
     if (
@@ -247,8 +245,8 @@ document.addEventListener("click", function(e) {
       e.preventDefault();
       const container = e.target.getAttribute("data-value");
       document
-      .querySelector(".compare__btn")
-      .classList.remove("compare__btn--ready");
+        .querySelector(".compare__btn")
+        .classList.remove("compare__btn--ready");
       clearComparisonContainer(container);
     }
 
