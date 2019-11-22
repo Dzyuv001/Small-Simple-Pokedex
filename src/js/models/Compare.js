@@ -27,6 +27,14 @@ export default class Compare {
     }
   }
 
+getComparisonIds(){
+  return [this.pokeComp[0].uId,this.pokeComp[1].uId ]
+}
+
+  isReadyForComparison() {//check if the compareson popup can be shown
+    return this.pokeComp[0].id != "" && this.pokeComp[1].id != "";
+  }
+
   isVsSettable(id) {
     //used to check if the compare option can be set
     const id0 = this.pokeComp[0].id;
@@ -73,10 +81,6 @@ export default class Compare {
       type: pokemon.v[uId].t,
       form: pokemon.v[uId].f
     };
-  }
-
-  getPokemonIdes() {
-    return [this.pokeComp[0].id, this.pokeComp[1].id];
   }
 
   async getCompareData() {

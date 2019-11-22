@@ -53,6 +53,7 @@ export const renderPokemon = (pokeData, isLiked) => {
   toggleLike(pokeData.primary.uId, isLiked);
 
   renderStatsRadar(pokeData.stats, pokeData.primary.name);
+  updateStartPercentageBars();
 };
 
 export const toggleLike = isLiked => {
@@ -306,6 +307,15 @@ const renderStatsTable = (stats, minMax, total, percent) => {
     </tfoot>
 </table>`;
   return htmlMarkup;
+};
+
+const updateStartPercentageBars = () => {
+  document
+    .getElementById("elemBaseStats-1")
+    .querySelectorAll(".table__row-bar-data.stats__base-data").forEach(e=>{
+      const percent = e.getAttribute("width")
+      e.style.width = percent;
+    });
 };
 
 export const updateStatsMinMax = values => {

@@ -57,7 +57,7 @@ export default class Pokemon {
         this.pokeData.percent[utility.statNames[i]] =
           Math.round(
             (this.pokeData.stats[utility.statNames[i]] / this.pokeData.statTotal) * 1000
-          ) / 10;
+          ) / 5;
       });
       this.pokeData.heldItem = await this.getHeldItem(pokedexData.held_items);
       this.pokeData.abilities = [];

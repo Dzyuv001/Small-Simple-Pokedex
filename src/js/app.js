@@ -23,7 +23,6 @@ const controlSearch = async searched => {
         state.search.setQuery(query);
       }
       if (state.search.isNewQuery()) {
-        // searchView.clearResult();
         base.renderLoader(base.elements.pokedexDisplay);
         state.search.getResults();
         setTimeout(() => {
@@ -104,6 +103,11 @@ const prepComparison = async uId => {
     document
       .getElementById(`comparison__pokemon--${container}`)
       .parentElement.classList.toggle("live");
+  }
+  if (state.compare.isReadyForComparison()) {
+    document
+      .querySelector(".compare__btn")
+      .classList.add("compare__btn--ready");
   }
 };
 
@@ -205,10 +209,10 @@ document.addEventListener("click", function(e) {
 
     if (e.target.className.includes("compare__btn")) {
       if (state.compare) {
-        const compareIds = state.compare.getPokemonIdes();
-        if (compareIds[0] != "" && compareIds[1] != "") {
+        if (state.compare.isReadyForComparison()) {
           const currentURL = util.getPathFromUrl(window.location.href);
-          const queryString = `?type=compare&pokemon1=${compareIds[0]}&pokemon2=${compareIds[1]}#compare`;
+          const comparisonUIds = state.compare.getComparisonIds();
+          const queryString = `?type=compare&pokemon1=${comparisonUIds[0]}&pokemon2=${comparisonUIds[1]}#compare`;
           const fullURL = currentURL + queryString;
           window.history.pushState("", "Versus Mode", fullURL);
           controlCompare();
@@ -242,6 +246,9 @@ document.addEventListener("click", function(e) {
     if (e.target.className.includes("compare__remove-btn")) {
       e.preventDefault();
       const container = e.target.getAttribute("data-value");
+      document
+      .querySelector(".compare__btn")
+      .classList.remove("compare__btn--ready");
       clearComparisonContainer(container);
     }
 
