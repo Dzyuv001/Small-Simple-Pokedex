@@ -1,7 +1,6 @@
 import axios from "axios";
 import { api } from "../config";
 import pokedex from "../JSON/smallPokedexV2.json";
-import typeData from "../JSON/slimTypes.json";
 import * as util from "../utility";
 import typesList from "../JSON/typesList.json";
 import movesList from "../JSON/minMoves.json";
@@ -20,7 +19,9 @@ export default class Pokemon {
     this.getData();
     this.getApiData();
     this.getSpecies();
-    this.getDamageTypes();
+    this.pokeData.typeDamage = utility.getDamageTypes(
+      this.pokeData.primary.type
+    );
   }
 
   getDisplayData(uId) {
@@ -40,7 +41,7 @@ export default class Pokemon {
     try {
       const res = await axios(api.pokemon + this.query.id);
       let pokedexData = res.data;
-      
+
       this.pokeData.primary.baseExp = pokedexData.base_experience;
       utility.parameters.forEach(param => (this.pokeData[param] = {}));
       this.pokeData.statTotal = 0;
@@ -56,7 +57,9 @@ export default class Pokemon {
         //e = element , i = index
         this.pokeData.percent[utility.statNames[i]] =
           Math.round(
-            (this.pokeData.stats[utility.statNames[i]] / this.pokeData.statTotal) * 1000
+            (this.pokeData.stats[utility.statNames[i]] /
+              this.pokeData.statTotal) *
+              1000
           ) / 5;
       });
       this.pokeData.heldItem = await this.getHeldItem(pokedexData.held_items);
@@ -284,19 +287,19 @@ export default class Pokemon {
     let tempString = "";
     if (evolutionDetails[0]) {
       if (evolutionDetails[0].min_level !== null) {
-        tempString += "level " + evolutionDetails[0].min_level + " ";
+        tempString += " Level " + evolutionDetails[0].min_level + " ";
       }
       if (evolutionDetails[0].held_item !== null) {
-        tempString += "when holding " + evolutionDetails[0].held_item.name;
+        tempString += " When holding " + evolutionDetails[0].held_item.name;
       }
       if (evolutionDetails[0].item !== null) {
-        tempString += "when given " + evolutionDetails[0].item.name;
+        tempString += " When given " + evolutionDetails[0].item.name;
       }
       if (evolutionDetails[0].min_happiness !== null) {
-        tempString += "friendship over" + evolutionDetails[0].min_happiness;
+        tempString += " Friendship over" + evolutionDetails[0].min_happiness;
       }
       if (evolutionDetails[0].time_of_day !== "") {
-        tempString += "during " + evolutionDetails[0].time_of_day + "time";
+        tempString += " During " + evolutionDetails[0].time_of_day + "time";
       }
       if (evolutionDetails[0].relative_physical_stats !== null) {
         const tempCriteria = [
@@ -368,79 +371,5 @@ export default class Pokemon {
       uId: uId,
       form: pokemon.v[uId].f
     };
-  }
-
-  getDamageTypes() {
-    let keys = Object.keys(typeData); //getting type data keys for the later on looping
-    let tempTypes = {
-      //setting up the type damage object
-      defense: {
-        Immune_to: {},
-        Resistant_to: {},
-        Normal_damage: {},
-        Week_to: {}
-      },
-      attack: {
-        Super_effective: {},
-        Normal_damage: {},
-        Not_very_effective: {},
-        No_damage: {}
-      }
-    };
-    //similar to the keys array seen before the two array bellow are for looping and calculating needs
-    const attackGroups = [
-      "Super_effective",
-      "Normal_damage",
-      "Not_very_effective",
-      "No_damage"
-    ];
-    const defenseGroup = [
-      "Week_to",
-      "Normal_damage",
-      "Resistant_to",
-      "Immune_to"
-    ];
-    //using the pre-calculated data
-    tempTypes.attack = this.calcTypeDamage(
-      tempTypes.attack,
-      attackGroups,
-      keys,
-      "attack"
-    );
-    tempTypes.defense = this.calcTypeDamage(
-      tempTypes.defense,
-      defenseGroup,
-      keys,
-      "defense"
-    );
-    //setting the type data
-    this.pokeData.typeDamage = tempTypes;
-  }
-
-  calcTypeDamage(typeGroup, group, keys, action) {
-    let tempDamageGroup = typeGroup;
-    //looping through all the damage types
-    for (let i = 0; i < keys.length; i++) {
-      //used to get rid of the two pseudo-types
-      if (keys[i] != "10001" && keys[i] != "10002") {
-        //calculating type damage using a ternary operator to check if the damage will be based of 2 or 1 types
-        let tempTypeDamage =
-          action == "defense" && this.pokeData.primary.type.length > 1
-            ? typeData[this.pokeData.primary.type[0]][action][keys[i]] *
-              typeData[this.pokeData.primary.type[1]][action][keys[i]]
-            : typeData[this.pokeData.primary.type[0]][action][keys[i]];
-        //the if statement are being used to write the value to the corresponding category
-        if (tempTypeDamage > 1) {
-          tempDamageGroup[group[0]][[keys[i]]] = tempTypeDamage;
-        } else if (tempTypeDamage == 1) {
-          tempDamageGroup[group[1]][[keys[i]]] = tempTypeDamage;
-        } else if (tempTypeDamage < 1 && tempTypeDamage > 0) {
-          tempDamageGroup[group[2]][keys[i]] = tempTypeDamage;
-        } else {
-          tempDamageGroup[group[3]][keys[i]] = tempTypeDamage;
-        }
-      }
-    }
-    return tempDamageGroup;
   }
 }

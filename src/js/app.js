@@ -10,7 +10,6 @@ import * as compareView from "./views/compareView";
 import * as likesView from "./views/likeView";
 import * as toastView from "./views/toastView";
 import * as base from "./views/base";
-//https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
 
 const controlSearch = async searched => {
   if (searched) {
@@ -62,7 +61,7 @@ const controlPokemon = async () => {
         );
       }, 2000);
     } catch (error) {
-      console.log(error);
+      toastView.renderToast(error);
     }
   }
 };
@@ -86,7 +85,7 @@ const controlCompare = async () => {
         compareView.renderCompare(state.compare.pokeComp);
       }, 4000);
     } catch (error) {
-      console.log(error);
+      toastView.renderToast(error);
     }
   }
 };

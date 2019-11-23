@@ -46,12 +46,12 @@ const renderPokemon = (form, likes) => {
         <div class="pokemon__buttons">
             <button data-value="${e.uId}" class="pokemon__vs">
                 <svg>
-                    <use xlink:href="./img/icons/sprites.svg#icon-vs"></use>
+                    <use xlink:href="../img/icons/sprites.svg#icon-vs"></use>
                 </svg>
             </button>
             <button data-value="${e.uId}" class="pokemon__liked">
                 <svg>
-                    <use xlink:href="./img/icons/sprites.svg#icon-like${"undefined" !== typeof likes[e.uId] ? "" : "_dislike"}"></use>
+                    <use xlink:href="../img/icons/sprites.svg#icon-like${"undefined" !== typeof likes[e.uId] ? "" : "_dislike"}"></use>
                 </svg>
             </button>
         </div>

@@ -126,7 +126,9 @@ export default class Compare {
           });
         });
         this.getPrimaryData(i);
-        this.getDamageTypes(i);
+        this.pokeComp[i].typeDamage = utility.getDamageTypes(
+          this.pokeComp[i].types
+        );
       } catch (error) {
         console.log(error);
       }
@@ -216,83 +218,5 @@ export default class Compare {
     const type = pokedex[this.pokeComp[i].id].v[this.pokeComp[i].uId].t;
     this.pokeComp[i].name = name;
     this.pokeComp[i].types = type;
-  }
-
-  getDamageTypes(index) {
-    //get damage data
-    let keys = Object.keys(typeData); //getting type data keys for the later on looping
-    let tempTypes = {
-      //setting up the type damage object
-      defense: {
-        Immune_to: {},
-        Resistant_to: {},
-        Normal_damage: {},
-        Week_to: {}
-      },
-      attack: {
-        Super_effective: {},
-        Normal_damage: {},
-        Not_very_effective: {},
-        No_damage: {}
-      }
-    };
-    //similar to the keys array seen before the two array bellow are for looping and calculating needs
-    const attackGroups = [
-      "Super_effective",
-      "Normal_damage",
-      "Not_very_effective",
-      "No_damage"
-    ];
-    const defenseGroup = [
-      "Week_to",
-      "Normal_damage",
-      "Resistant_to",
-      "Immune_to"
-    ];
-    //using the pre-calculated data
-    tempTypes.attack = this.calcTypeDamage(
-      tempTypes.attack,
-      attackGroups,
-      keys,
-      "attack",
-      index
-    );
-    tempTypes.defense = this.calcTypeDamage(
-      tempTypes.defense,
-      defenseGroup,
-      keys,
-      "defense",
-      index
-    );
-    //setting the type data
-    this.pokeComp[index].typeDamage = tempTypes;
-  }
-
-  calcTypeDamage(typeGroup, group, keys, action, index) {
-    //used to calculate the damage will be done and add it to a specific category
-    let tempDamageGroup = typeGroup;
-    //looping through all the damage types
-    for (let i = 0; i < keys.length; i++) {
-      //used to get rid of the two pseudo-types
-      if (keys[i] != "10001" && keys[i] != "10002") {
-        //calculating type damage using a ternary operator to check if the damage will be based of 2 or 1 types
-        let tempTypeDamage =
-          action == "defense" && this.pokeComp[index].types.length > 1
-            ? typeData[this.pokeComp[index].types[0]][action][keys[i]] *
-              typeData[this.pokeComp[index].types[1]][action][keys[i]]
-            : typeData[this.pokeComp[index].types[0]][action][keys[i]];
-        //the if statement are being used to write the value to the corresponding category
-        if (tempTypeDamage > 1) {
-          tempDamageGroup[group[0]][[keys[i]]] = tempTypeDamage;
-        } else if (tempTypeDamage == 1) {
-          tempDamageGroup[group[1]][[keys[i]]] = tempTypeDamage;
-        } else if (tempTypeDamage < 1 && tempTypeDamage > 0) {
-          tempDamageGroup[group[2]][keys[i]] = tempTypeDamage;
-        } else {
-          tempDamageGroup[group[3]][keys[i]] = tempTypeDamage;
-        }
-      }
-    }
-    return tempDamageGroup;
   }
 }
