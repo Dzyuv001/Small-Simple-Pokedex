@@ -1,5 +1,7 @@
+import axios from "axios";
 import typeData from "../JSON/slimTypes.json";
-
+import movesList from "../JSON/minMoves.json";
+import Move from "../models/Moves";
 export const statNames = ["speed", "spDef", "spAtk", "defense", "attack", "hp"];
 export const parameters = ["stats", "ev", "percent", "statsMinMax"];
 
@@ -64,7 +66,6 @@ const calcTypeDamage = (typeGroup, type, group, keys, action) => {
     for (let i = 0; i < keys.length; i++) {
       //used to get rid of the two pseudo-types
       //calculating type damage using a ternary operator to check if the damage will be based of 2 or 1 types
-      console.log(typeGroup, type, group, keys, action);
       let tempTypeDamage =
         action == "defense" && type.length > 1
           ? typeData[type[0]][action][keys[i]] *
@@ -86,3 +87,34 @@ const calcTypeDamage = (typeGroup, type, group, keys, action) => {
     console.log(error);
   }
 };
+
+export const getMoves = async (moves) =>{
+  //the moves will be separated into 4 catagories
+  let moveData = {}
+  moveData = {};
+  let moveGain = ["level-up", "egg", "tutor", "machine"];
+  moveGain.forEach(e => {
+    moveData[e] = [];
+  });
+  moves.forEach(e => {
+    let tempMoveData = movesList[e.move.name.replace(/\-/g, "_")];
+    const tempLevel =
+      e.version_group_details[0].move_learn_method.name == moveGain[0]
+        ? e.version_group_details[0].level_learned_at
+        : "";
+    let tempMove = new Move(tempMoveData, tempLevel);
+    const method = e.version_group_details[0].move_learn_method.name;
+    moveData[method].push(tempMove);
+  });
+  return moveData;
+}
+
+export const getAbility = async (queryString) => {
+  //used to get the ability description from the pokemon api
+  try {
+    const res = await axios(queryString);
+    return await res.data.effect_entries[0].short_effect;
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -3,9 +3,7 @@ import { api } from "../config";
 import pokedex from "../JSON/smallPokedexV2.json";
 import * as util from "../utility";
 import typesList from "../JSON/typesList.json";
-import movesList from "../JSON/minMoves.json";
 import pokemonToSpecies from "../JSON/pokemonToSpecies.json";
-import Move from "../models/Moves";
 import * as utility from "./Utility";
 
 export default class Pokemon {
@@ -39,12 +37,13 @@ export default class Pokemon {
   async getApiData() {
     //get the primary data
     try {
+      //getting the primary data from the pokemon api
       const res = await axios(api.pokemon + this.query.id);
       let pokedexData = res.data;
-
       this.pokeData.primary.baseExp = pokedexData.base_experience;
       utility.parameters.forEach(param => (this.pokeData[param] = {}));
       this.pokeData.statTotal = 0;
+      //looping through the stats to set the pokemon's stats, evs and calculate the total stat value
       pokedexData.stats.forEach((e, i) => {
         //e = element , i = index
         const tempStat = parseInt(e.base_stat);
@@ -53,6 +52,7 @@ export default class Pokemon {
         this.pokeData.statTotal += tempStat;
       });
       this.pokeData.statsMinMax = utility.calcMinMax(100, this.pokeData.stats);
+     //setting the pokemon stat percentages 
       pokedexData.stats.forEach((e, i) => {
         //e = element , i = index
         this.pokeData.percent[utility.statNames[i]] =
@@ -62,18 +62,21 @@ export default class Pokemon {
               1000
           ) / 5;
       });
+      //getting the potentially held items by the pokemon
       this.pokeData.heldItem = await this.getHeldItem(pokedexData.held_items);
       this.pokeData.abilities = [];
       pokedexData.abilities.forEach(async e => {
         this.pokeData.abilities.push({
           isHidden: e.is_hidden,
           name: e.ability.name,
-          description: await this.getAbility(e.ability.url)
+          description: await utility.getAbility(e.ability.url)
         });
       });
+      //setting the height and weight of the pokemon
       this.pokeData.primary.weight = pokedexData.weight;
       this.pokeData.primary.height = pokedexData.height;
-      this.getMoves(await pokedexData.moves);
+      //getting the moves that the pokemon can learn.
+      this.pokeData.moves = await utility.getMoves( pokedexData.moves);
     } catch (error) {
       console.log(error);
     }
@@ -84,7 +87,7 @@ export default class Pokemon {
     return this.pokeData.statsMinMax;
   }
 
-  setMinMax(level) {
+  setMinMax(level) {//used to set the mind max value
     this.pokeData.statsMinMax = utility.calcMinMax(level, this.pokeData.stats);
   }
 
@@ -169,23 +172,13 @@ export default class Pokemon {
     }
   }
 
-  async getAbility(queryString) {
-    //used to get the ability description from the pokemon api
-    try {
-      const res = await axios(queryString);
-      return await res.data.effect_entries[0].short_effect;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   getGenderData(genderRate) {
     //get the gender of the pokemon
     if (genderRate == -1) {
       // the pokemon is genderless
       return null;
     } else {
-      //the pokemon has gender and the percentage will be calucalted
+      //the pokemon has gender and the percentage will be calculated
       return {
         f: (genderRate / 8) * 100,
         m: ((8 - genderRate) / 8) * 100
@@ -219,15 +212,17 @@ export default class Pokemon {
         this.getUrlId(species.shape.url),
         species.shape.name
       ];
+      //setting the species data
       this.pokeData.genders = await this.getGenderData(species.gender_rate);
       this.pokeData.primary.baseFriendship = species.base_happiness;
       this.pokeData.catchRate = species.capture_rate;
       this.pokeData.eggData = {};
       this.pokeData.eggData.hatchCount = species.hatch_counter;
       this.pokeData.eggData.eggGroup = [];
+      // loop through the egg groups to store the values
       species.egg_groups.forEach(e =>
         this.pokeData.eggData.eggGroup.push(e.name)
-      );
+      );//
       this.pokeData.evolutionTree = await this.getEvolution(
         species.evolution_chain.url
       );
@@ -254,25 +249,29 @@ export default class Pokemon {
   }
 
   async navEvolutionTree(evoChain, root) {
-    //getting and traversing the evolution node tree stored in the evolution request
+    //getting and traversing the evolution node tree stored in the evolution api request
     try {
       let evoNode = {};
       evoNode.name = evoChain.species.name;
       let res = await axios(api.pokemon + evoNode.name);
       evoNode.id = res.data.id;
+      //check if the pokemon is the root of the evolutions tree
+      // if the pokemon is the root of the evolution tree the pokemon the dont have evolution requirements
+      //if the pokemon is not hte root, the evolution data is gained.
       root
         ? (evoNode.requirement = 0)
         : (evoNode.requirement = await this.setupEvolutionCriteria(
             evoChain.evolution_details
           ));
       evoNode.types = [];
-      evoNode.isRoot = root;
+      evoNode.isRoot = root;// set evolution root value , used to render table correctly
       res.data.types.forEach(type => {
         evoNode.types.push(util.getValKey(typesList, type.type.name));
       });
-      if (evoChain.evolves_to) {
+      if (evoChain.evolves_to) {// check if the pokemon actually have any evolutions
         evoNode.evolutions = [];
         evoChain.evolves_to.forEach(async e => {
+          // loop though all the possible evolutions and get their data by calling this function recursively
           evoNode.evolutions.push(await this.navEvolutionTree(e, false));
         });
       }
@@ -282,26 +281,26 @@ export default class Pokemon {
     }
   }
 
-  async setupEvolutionCriteria(evolutionDetails) {
-    //format the the evolution reason
-    let tempString = "";
-    if (evolutionDetails[0]) {
-      if (evolutionDetails[0].min_level !== null) {
+  async setupEvolutionCriteria(evolutionDetails) { //format the the evolution reason
+    let tempString = "";// stores the evolution string
+    if (evolutionDetails[0]) {// check if there are evolution conditions
+
+      if (evolutionDetails[0].min_level !== null) {//check the min level needed to evolve
         tempString += " Level " + evolutionDetails[0].min_level + " ";
       }
-      if (evolutionDetails[0].held_item !== null) {
+      if (evolutionDetails[0].held_item !== null) {//check if the pokemon needs to hold an item to evolve
         tempString += " When holding " + evolutionDetails[0].held_item.name;
       }
-      if (evolutionDetails[0].item !== null) {
+      if (evolutionDetails[0].item !== null) {//check what item is needed to evolve a pokemon
         tempString += " When given " + evolutionDetails[0].item.name;
       }
-      if (evolutionDetails[0].min_happiness !== null) {
+      if (evolutionDetails[0].min_happiness !== null) {// check min happiness needed to evolve pokemon
         tempString += " Friendship over" + evolutionDetails[0].min_happiness;
       }
-      if (evolutionDetails[0].time_of_day !== "") {
+      if (evolutionDetails[0].time_of_day !== "") {// check what time of day is needed to evolve the pokemon
         tempString += " During " + evolutionDetails[0].time_of_day + "time";
       }
-      if (evolutionDetails[0].relative_physical_stats !== null) {
+      if (evolutionDetails[0].relative_physical_stats !== null) {//get specific stats need to evolve
         const tempCriteria = [
           "Attack < Defense",
           "Attack = Defense",
@@ -310,7 +309,7 @@ export default class Pokemon {
         tempString +=
           " " + (tempCriteria[evolutionDetails[0].relative_physical_stats] + 1);
       }
-      if (evolutionDetails[0].location !== null) {
+      if (evolutionDetails[0].location !== null) {//check if the pokemon evolves in particular location
         tempString += " At ";
         let temKeys = Object.keys(evolutionDetails);
         for (let i = 0; i < temKeys.length; i++) {
@@ -319,7 +318,7 @@ export default class Pokemon {
             (i !== temKeys.length ? " or " : " ");
         }
       }
-      if (evolutionDetails[0].trigger.name === "trade") {
+      if (evolutionDetails[0].trigger.name === "trade") {//check if the pokemon evolves from a trade
         tempString += " Traiding ";
       }
       if (evolutionDetails[0].location) {
@@ -337,26 +336,7 @@ export default class Pokemon {
     return parseInt(url.split("/")[6]);
   }
 
-  async getMoves(moves) {
-    //the moves will be separated into 4 catagories
-    this.pokeData.moves = {};
-    let moveGain = ["level-up", "egg", "tutor", "machine"];
-    moveGain.forEach(e => {
-      this.pokeData.moves[e] = [];
-    });
-    moves.forEach(e => {
-      let tempMoveData = movesList[e.move.name.replace(/\-/g, "_")];
-      const tempLevel =
-        e.version_group_details[0].move_learn_method.name == moveGain[0]
-          ? e.version_group_details[0].level_learned_at
-          : "";
-      let tempMove = new Move(tempMoveData, tempLevel);
-      const method = e.version_group_details[0].move_learn_method.name;
-      this.pokeData.moves[method].push(tempMove);
-    });
-  }
-
-  getData() {
+  getData() {//will be used to get primary data 
     const uId = this.query.id;
     const id = uId > 10000 ? pokemonToSpecies[uId] : uId;
     const pokemon = pokedex[id];

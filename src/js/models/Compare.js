@@ -1,10 +1,7 @@
 import axios from "axios";
 import { api } from "../config";
 import pokedex from "../JSON/smallPokedexV2.json";
-import typeData from "../JSON/slimTypes.json";
 import pokemonUIdToId from "../JSON/pokemonToSpecies.json";
-import movesList from "../JSON/minMoves.json";
-import Move from "../models/Moves";
 import * as utility from "./Utility";
 
 export default class Compare {
@@ -117,12 +114,12 @@ export default class Compare {
                 1000
             ) / 10;
         });
-        this.getMoves(await pokedexData.moves, i);
+        this.pokeComp[i].moves = await utility.getMoves(pokedexData.moves);
         pokedexData.abilities.forEach(async e => {
           this.pokeComp[i].abilities.push({
             isHidden: e.is_hidden,
             name: e.ability.name,
-            description: await this.getAbility(e.ability.url)
+            description: await utility.getAbility(e.ability.url)
           });
         });
         this.getPrimaryData(i);
@@ -143,44 +140,11 @@ export default class Compare {
     return this.pokeComp[index].statsMinMax;
   }
 
-  setminMax(level, index) {
+  setMinMax(level, index) {
     this.pokeComp[index].statsMinMax = utility.calcMinMax(
       level,
       this.pokeComp[index].stats
     );
-  }
-
-  async getAbility(queryString) {
-    //used to get the ability description
-    try {
-      const res = await axios(queryString);
-      return await res.data.effect_entries[0].short_effect;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  getUrlId(url) {
-    return parseInt(url.split("/")[6]);
-  }
-
-  async getMoves(moves, i) {
-    //the moves will be separated into 4 catagories
-    this.pokeComp[i].moves = {};
-    let moveGain = ["level-up", "egg", "tutor", "machine"];
-    moveGain.forEach(e => {
-      this.pokeComp[i].moves[e] = [];
-    });
-    moves.forEach(e => {
-      let tempMoveData = movesList[e.move.name.replace(/\-/g, "_")];
-      const tempLevel =
-        e.version_group_details[0].move_learn_method.name == moveGain[0]
-          ? e.version_group_details[0].level_learned_at
-          : "";
-      let tempMove = new Move(tempMoveData, tempLevel);
-      const method = e.version_group_details[0].move_learn_method.name;
-      this.pokeComp[i].moves[method].push(tempMove);
-    });
   }
 
   getDamageEffectiveness(index) {
