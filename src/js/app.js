@@ -95,7 +95,7 @@ const prepComparison = async uId => {
   if (!state.compare) state.compare = new Compare();
   if (state.compare.isVsSettable(uId)) {
     let container = await state.compare.setIdOfPokemon(uId);
-    let data = await state.compare.getVSPokemonData(uId);
+    let data = await state.compare.setVSPokemonData(uId);
     document.getElementById(
       `comparison__pokemon--${container}`
     ).innerHTML = compareView.renderVSPokemon(data, container);

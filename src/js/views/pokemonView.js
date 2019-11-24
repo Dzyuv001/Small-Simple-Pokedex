@@ -725,9 +725,7 @@ const renderMoves = moves => {
   keys.forEach(e => {
     htmlMarkup += renderMoveTable(moves[e], tableTitles[e], e);
   });
-  return `
-    <h2 class="heading-2 moves__title">Pokemon Moves</h2>${htmlMarkup}
-    `;
+  return `<h2 class="heading-2 moves__title">Pokemon Moves</h2>${htmlMarkup}`;
 };
 
 const formatNumber = num => {
