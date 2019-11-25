@@ -266,24 +266,6 @@ const renderEVs = ev => {
   return htmlMarkup + "</div>";
 };
 
-const renderMoveRow = (rowData, isLevelup) => {
-  return `
-<tr class="table__row">
-    ${isLevelup ? `<td class="table__stats-val">${rowData.l}</td>` : ""}
-    <td class="table__stats-val">${util.upCaseFirstChr(rowData.n)}</td>
-    <td class="table__stats-val">
-        ${util.renderTypes([rowData.t], true)}
-    </td>
-    <td class="table__stats-val">
-        <button class="status status--${rowData.d}"></button>
-    </td>
-    <td class="table__stats-val">${rowData.p == null ? "_" : rowData.p}</td>
-    <td class="table__stats-val">${rowData.a == null ? "_" : rowData.a}</td>
-    <td class="table__stats-val">${rowData.pp}</td>
-    <td class="table__stats-val">${rowData.ef}x</td>
-</tr>`;
-};
-
 const renderMoveTable = (moveTable, typeTable, id, index) => {
   const isLevelup = typeTable == "Moves learned by leveling-up" ? true : false;
   let htmlMarkUp = "";
@@ -333,7 +315,7 @@ const renderMoveTable = (moveTable, typeTable, id, index) => {
   } else {
     htmlMarkUp += `
 <section class="moves__section">
-    <p>This pokemon does not have any move gained through this method</p>
+    <h4 class="heading-4">This pokemon does not have any move gained through this method</h4>
 </section >`;
   }
   return htmlMarkUp;

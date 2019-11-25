@@ -379,7 +379,6 @@ const renderDamageMultipliers = typeDamage => {
 
 const renderHeldItems = heldItems => {
   let htmlMarkup = `<div class="extra-stats__items">`;
-
   if (heldItems) {
     htmlMarkup += `
         <div class="extra-stats__items">

@@ -54,7 +54,7 @@ export const renderTypes = types => {
     18: "5"
   };
   types.forEach(e => {
-    tempTypeBtn += `<a data-value="${typelphabetIds[e]}" href="" class="type type__${e}"></a>`;
+    tempTypeBtn += `<button data-value="${typelphabetIds[e]}" href="" class="type type__${e}"></button>`;
   });
   return tempTypeBtn;
 };
@@ -96,7 +96,7 @@ export const renderMoveRow = (rowData, isLevelup, isCompare) => {
   <tr class="table__row">
       ${isLevelup ? `<td class="table__stats-val">${rowData.l}</td>` : ""}
       <td class="table__stats-val">${upCaseFirstChr(rowData.n)}</td>
-      <td class="table__stats-val moves__type">
+      <td class="table__stats-val">
           ${renderTypes([rowData.t])}
       </td>
       <td class="table__stats-val">

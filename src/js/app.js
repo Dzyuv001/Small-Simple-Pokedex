@@ -183,6 +183,29 @@ document.addEventListener("click", function(e) {
     if (e.target.className.includes("table__sortable")) {
       // the data value property will contain a two values split with a "-"
       let dataValueArray = e.target.getAttribute("data-value").split("-");
+      let parent = e.target.parentNode;
+      let parentDataValue = parent.getAttribute("data-value");
+      if (parentDataValue) {
+        console.log(
+          "the values",
+          parentDataValue === dataValueArray[0],
+          e.target.innerHTML.indexOf("▲") != -1
+        );
+        if (parentDataValue === dataValueArray[0]) {
+          console.log("we are there ");
+          e.target.innerHTML = e.target.innerHTML.indexOf("▲") != -1
+            ?e.target.innerHTML.replace("▲", "▼")
+            :e.target.innerHTML.replace("▼", "▲");
+        } else {
+          console.log("this is the parent", parent.getElementsByTagName("th")[parentDataValue]);
+          parent.getElementsByTagName("th")[parentDataValue].innerHTML =   parent.getElementsByTagName("th")[parentDataValue].innerHTML.replace("▲", "").replace("▼", "");
+          e.target.innerHTML+= "▲";
+        }
+      } else {
+        e.target.innerHTML += "▲";
+      }
+      console.log("setting parent object data-value", e.target.innerHTML);
+      parent.setAttribute("data-value", dataValueArray[0]);
       util.sortTable(
         dataValueArray[0],
         e.target.parentNode.parentNode.parentNode.id,

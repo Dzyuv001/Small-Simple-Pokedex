@@ -37,7 +37,6 @@
         height: 6rem;
         line-height: 200%;
         font-size: 3rem;
-
       }
       @media only screen and (max-width: $bp-small) {
         width: 8rem;
@@ -76,10 +75,12 @@
   text-shadow: -1px -1px 0.1rem #000, 1px -1px 0.1rem #000, -1px 1px 0.1rem #000,
     1px 1px 0.1rem #000;
   border-radius: 0.8rem;
+  display: inline;
+  margin: auto;
 
   &__7 {
     background: $color-bug;
-    border: .2rem solid $color-bug-dark;
+    border: 0.2rem solid $color-bug-dark;
 
     &:before {
       content: "Bug";
@@ -88,7 +89,7 @@
 
   &__17 {
     background: $color-dark;
-    border: .2rem solid $color-dark-dark;
+    border: 0.2rem solid $color-dark-dark;
 
     &:before {
       content: "Dark";
@@ -97,7 +98,7 @@
 
   &__16 {
     background: $color-dragon;
-    border: .2rem solid $color-dragon-dark;
+    border: 0.2rem solid $color-dragon-dark;
 
     &:before {
       content: "Dragon";
@@ -106,7 +107,7 @@
 
   &__13 {
     background: $color-electric;
-    border: .2rem solid $color-electric-dark;
+    border: 0.2rem solid $color-electric-dark;
 
     &:before {
       content: "Electric";
@@ -115,7 +116,7 @@
 
   &__18 {
     background: $color-fairy;
-    border: .2rem solid $color-fairy-dark;
+    border: 0.2rem solid $color-fairy-dark;
 
     &:before {
       content: "Fairy";
@@ -124,7 +125,7 @@
 
   &__2 {
     background: $color-fighting;
-    border: .2rem solid $color-fighting-dark;
+    border: 0.2rem solid $color-fighting-dark;
 
     &:before {
       content: "Fighting";
@@ -133,7 +134,7 @@
 
   &__10 {
     background: $color-fire;
-    border: .2rem solid $color-fire-dark;
+    border: 0.2rem solid $color-fire-dark;
 
     &:before {
       content: "Fire";
@@ -142,7 +143,7 @@
 
   &__3 {
     background: $color-flying;
-    border: .2rem solid $color-flying-dark;
+    border: 0.2rem solid $color-flying-dark;
 
     &:before {
       content: "Flying";
@@ -151,7 +152,7 @@
 
   &__8 {
     background: $color-ghost;
-    border: .2rem solid $color-ghost-dark;
+    border: 0.2rem solid $color-ghost-dark;
 
     &:before {
       content: "Ghost";
@@ -160,7 +161,7 @@
 
   &__12 {
     background: $color-grass;
-    border: .2rem solid $color-grass-dark;
+    border: 0.2rem solid $color-grass-dark;
 
     &:before {
       content: "Grass";
@@ -169,7 +170,7 @@
 
   &__5 {
     background: $color-ground;
-    border: .2rem solid $color-ground-dark;
+    border: 0.2rem solid $color-ground-dark;
 
     &:before {
       content: "Ground";
@@ -178,7 +179,7 @@
 
   &__15 {
     background: $color-ice;
-    border: .2rem solid $color-ice-dark;
+    border: 0.2rem solid $color-ice-dark;
 
     &:before {
       content: "Ice";
@@ -187,7 +188,7 @@
 
   &__1 {
     background: $color-normal;
-    border: .2rem solid $color-normal-dark;
+    border: 0.2rem solid $color-normal-dark;
 
     &:before {
       content: "Normal";
@@ -196,7 +197,7 @@
 
   &__4 {
     background: $color-poison;
-    border: .2rem solid $color-poison-dark;
+    border: 0.2rem solid $color-poison-dark;
 
     &:before {
       content: "Poison";
@@ -205,7 +206,7 @@
 
   &__14 {
     background: $color-psychic;
-    border: .2rem solid $color-psychic-dark;
+    border: 0.2rem solid $color-psychic-dark;
 
     &:before {
       content: "Psychic";
@@ -214,7 +215,7 @@
 
   &__6 {
     background: $color-rock;
-    border: .2rem solid $color-rock-dark;
+    border: 0.2rem solid $color-rock-dark;
 
     &:before {
       content: "Rock";
@@ -223,7 +224,7 @@
 
   &__9 {
     background: $color-steel;
-    border: .2rem solid $color-steel-dark;
+    border: 0.2rem solid $color-steel-dark;
 
     &:before {
       content: "Steel";
@@ -232,7 +233,7 @@
 
   &__11 {
     background: $color-water;
-    border: .2rem solid $color-water-dark;
+    border: 0.2rem solid $color-water-dark;
 
     &:before {
       content: "Water";
