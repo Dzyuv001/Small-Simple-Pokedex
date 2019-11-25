@@ -54,7 +54,7 @@ export const renderTypes = types => {
     18: "5"
   };
   types.forEach(e => {
-    tempTypeBtn += `<button data-value="${typelphabetIds[e]}" href="" class="type type__${e}"></button>`;
+    tempTypeBtn += `<button data-value="${typelphabetIds[e]}" class="type type__${e}"></button>`;
   });
   return tempTypeBtn;
 };

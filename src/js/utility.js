@@ -63,8 +63,8 @@ const getDataForSort = (rows, n, i, type) => {
   //get data
   let a, b;
   if (type === "data") {
-      a = rows[i].querySelector("td a").getAttributeNode("data-value").value;
-      b = rows[i+1].querySelector("td a").getAttributeNode("data-value").value;
+      a = rows[i].querySelector("td button").getAttributeNode("data-value").value;
+      b = rows[i+1].querySelector("td button").getAttributeNode("data-value").value;
     } else {
         a = rows[i].getElementsByTagName("td")[n].innerHTML.toLowerCase();
         b = rows[i+1].getElementsByTagName("td")[n].innerHTML.toLowerCase();
