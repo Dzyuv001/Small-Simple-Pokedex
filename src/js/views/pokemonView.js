@@ -1,6 +1,6 @@
 import { elements, htmlIncept } from "./base";
 import Chart from "chart.js";
-import * as util from "../utility";
+import * as util from "./utility";
 
 export const isSearchTextBlank = () => {
   return elements.searchField.value != "";
@@ -11,12 +11,15 @@ export const getStatsLevel = () => {
 };
 
 export const clearMarkup = () => {
-  document.querySelector(".primaryInfo__left").innerHTML = "";
-  document.querySelector(".primaryInfo__right").innerHTML = "";
-  document.querySelector(".evolution").innerHTML = "";
-  document.querySelector(".extra-stats").innerHTML = "";
-  document.querySelector(".stats__defense").innerHTML = "";
-  document.querySelector(".moves").innerHTML = "";
+  const DOMStrings = [
+    ".primaryInfo__left",
+    ".primaryInfo__right",
+    ".evolution",
+    ".extra-stats",
+    ".stats__defense",
+    ".moves"
+  ];
+  DOMStrings.forEach(dom => (document.querySelector(dom).innerHTML = ""));
 };
 
 export const renderPokemon = (pokeData, isLiked) => {
@@ -35,7 +38,7 @@ export const renderPokemon = (pokeData, isLiked) => {
     pokeData.evolutionTree
   );
   document.querySelector(".extra-stats").innerHTML =
-    renderAbilities(pokeData.abilities) + renderHeldItems(pokeData.heldItem);
+    util.renderAbilities(pokeData.abilities) + renderHeldItems(pokeData.heldItem);
   renderStats(
     pokeData.stats,
     pokeData.statsMinMax,
@@ -53,7 +56,7 @@ export const renderPokemon = (pokeData, isLiked) => {
   toggleLike(pokeData.primary.uId, isLiked);
 
   renderStatsRadar(pokeData.stats, pokeData.primary.name);
-  updateStartPercentageBars();
+  util.updateStartPercentageBars(["elemBaseStats-1"]);
 };
 
 export const toggleLike = isLiked => {
@@ -65,61 +68,21 @@ export const toggleLike = isLiked => {
     );
 };
 
-const pad = (str, max) => {
-  str = str.toString();
-  return str.length < max ? pad("0" + str, max) : str;
-};
-
-const genName = (id, uId, f) => {
-  if (parseInt(uId) < 10000) {
-    return pad(id, 3);
-  }
-  return `${pad(id, 3)}${f}`;
-};
-
 const renderPrimaryLeft = data => {
   return `
-    <h1 class="heading-1 grid__spanAll-width grid__center">${upCaseFirstChr(
+    <h1 class="heading-1 grid__spanAll-width grid__center">${util.upCaseFirstChr(
       data.name
     )} #${data.id}</h1>
 <section class="primaryInfo__left">
-<img class="primaryInfo__left-image" src="../img/pokemonImages/${genName(
+<img class="primaryInfo__left-image" src="../img/pokemonImages/${util.genName(
     data.id,
     data.uId,
     data.form
   )}.png" alt="pokemon">
     <div class="primaryInfo__left-overlay-container">
-        ${renderTypes(data.type)}
+        ${util.renderTypes(data.type)}
     </div>
 </section>`;
-};
-
-const renderTypes = types => {
-  let tempTypeBtn = "";
-  const typelphabetIds = {
-    1: "13",
-    2: "6",
-    3: "8",
-    4: "14",
-    5: "11",
-    6: "16",
-    7: "1",
-    8: "9",
-    9: "17",
-    10: "7",
-    11: "18",
-    12: "10",
-    13: "4",
-    14: "15",
-    15: "12",
-    16: "3",
-    17: "2",
-    18: "5"
-  };
-  types.forEach(e => {
-    tempTypeBtn += `<a data-value="${typelphabetIds[e]}" href="" class="type type__${e}"></a>`;
-  });
-  return tempTypeBtn;
 };
 
 const renderPrimaryRight = (
@@ -157,7 +120,7 @@ const renderPrimaryRight = (
   eggData.eggGroup.forEach((e, i) => {
     eggGroupsHTMLMarkup += `
 <span class="eggGroup__variety-${e}">
-    ${upCaseFirstChr(e)}
+    ${util.upCaseFirstChr(e)}
     ${i + 1 != eggData.eggGroup.length ? ", " : ""}
 </span>`;
   });
@@ -231,7 +194,7 @@ const renderPrimaryRight = (
             </p>
         </div>
         <div class="primaryInfo__right-element">
-            <p class="primaryInfo__right-element-title">Body Type: ${upCaseFirstChr(
+            <p class="primaryInfo__right-element-title">Body Type: ${util.upCaseFirstChr(
               primaryData.shape[1]
             )}</p>
             <img src="img/bodystyle/Body${primaryData.shape[0]}.png" alt="">
@@ -247,12 +210,7 @@ const renderPrimaryRight = (
 };
 
 const renderStats = (stats, minMax, total, percent) => {
-  let htmlMarkup = `
-<!--<h2 class="heading-2">Base Stats</h2>
-<h3 class="heading-3">
-    <span id="lblBaseStats-0" class="stats__tab stats__tab--active">Radar Chart</span>/
-    <span id="lblBaseStats-1" class="stats__tab">Stats Table</span>
-</h3>-->`;
+  let htmlMarkup = "";
   document
     .querySelector(".stats__base")
     .insertAdjacentHTML(htmlIncept.afterBegin, htmlMarkup);
@@ -263,14 +221,6 @@ const renderStats = (stats, minMax, total, percent) => {
 };
 
 const renderStatsTable = (stats, minMax, total, percent) => {
-  const utillityObj = [
-    { title: "HP", key: "hp" },
-    { title: "Attack", key: "attack" },
-    { title: "Defense", key: "defense" },
-    { title: "Sp.Atk", key: "spAtk" },
-    { title: "Sp.Def", key: "spDef" },
-    { title: "Speed", key: "speed" }
-  ];
   let htmlMarkup = `
 <table id="elemBaseStats-1" class="stats__base-table stats__tab-element table">
     <thead>
@@ -279,7 +229,7 @@ const renderStatsTable = (stats, minMax, total, percent) => {
         <th class="table__heading">Max</th>
     </thead>
     <tbody>`;
-  utillityObj.forEach(stat => {
+  util.utillityObj.forEach(stat => {
     htmlMarkup += `
         <tr class="table__row stats__base-${stat.key}" data-value="${stat.key}">
             <td class="table__row-title stats__base-title">${stat.title}:</th>
@@ -307,15 +257,6 @@ const renderStatsTable = (stats, minMax, total, percent) => {
     </tfoot>
 </table>`;
   return htmlMarkup;
-};
-
-const updateStartPercentageBars = () => {
-  document
-    .getElementById("elemBaseStats-1")
-    .querySelectorAll(".table__row-bar-data.stats__base-data").forEach(e=>{
-      const percent = e.getAttribute("width")
-      e.style.width = percent;
-    });
 };
 
 export const updateStatsMinMax = values => {
@@ -403,31 +344,6 @@ const renderStatsRadar = (stats, name) => {
   chart.removeAttribute("style");
 };
 
-const renderEffectivenessMarkup = (keyName, damageNType) => {
-  let effectiveTableRow = `
-<tr class="table__row">
-    <td class="effectiveness__title table__row-title ">${keyName.replace(
-      /_/g,
-      " "
-    )}: </td>
-    <td class="effectiveness__container">
-        ${buildContainers(damageNType)}
-    </td>
-</tr>`;
-  return effectiveTableRow;
-};
-
-const buildContainers = damageNType => {
-  let effectiveElements = "";
-  Object.entries(damageNType).forEach(e => {
-    effectiveElements += `
-        <div class="effectiveness__element effectiveness__element-${e[0]}">
-            <span class="effectiveness__value">${e[1]}×</span>
-        </div>`;
-  });
-  return effectiveElements;
-};
-
 const renderDamageMultipliers = typeDamage => {
   let htmlMarkup = "";
   let damageChategories = Object.keys(typeDamage);
@@ -451,41 +367,13 @@ const renderDamageMultipliers = typeDamage => {
       i == 0 ? "effectiveness--visible" : ""
     }">`;
     e.forEach(e1 => {
-      htmlMarkup += renderEffectivenessMarkup(
+      htmlMarkup += util.renderEffectivenessMarkup(
         e1,
         typeDamage[damageChategories[i]][e1]
       );
     });
     htmlMarkup += `</table>`;
   });
-  return htmlMarkup;
-};
-
-const renderAbilities = abilities => {
-  let htmlMarkup = `
-    <div class="extra-stats__abilities">
-        <h2 class="heading-2">Abilities</h2>
-        <table class="extra-stats__abilities-table table">
-            <thead>
-                <tr>
-                    <th class="table__heading">Name</th>
-                    <th class="table__heading">isHidden</th>
-                    <th class="table__heading">Description</th>
-                </tr>
-            </thead>
-        <tbody>`;
-  abilities.forEach(e => {
-    htmlMarkup += `
-<tr class="table__row">
-    <td class="table__stats-val">${upCaseFirstChr(e.name)}</td>
-    <td class="table__stats-val">${e.isHidden}</td>
-    <td class="table__stats-val">${e.description}</td>
-</tr>`;
-  });
-  htmlMarkup += `
-                </tbody>
-            </table>
-        </div>`;
   return htmlMarkup;
 };
 
@@ -510,7 +398,7 @@ const renderHeldItems = heldItems => {
       htmlMarkup += `
                     <tr class="table__row">
                         <td class="table__stats-val">image will go here</td>
-                        <td class="table__stats-val">${upCaseFirstChr(
+                        <td class="table__stats-val">${util.upCaseFirstChr(
                           e.name
                         )}</td>
                         <td class="table__stats-val">${e.rarity}</td>
@@ -535,39 +423,11 @@ const renderHeldItems = heldItems => {
   return htmlMarkup;
 };
 
-const upCaseFirstChr = str => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
 const renderEVs = ev => {
-  const evTitles = {
-    hp: "HP",
-    attack: "Atk",
-    defense: "Def",
-    spAtk: "Sp.Atk",
-    spDef: "Sp.Def",
-    speed: "Speed"
-  };
-  let evTotal = 0;
-  let evKeys = ["hp", "attack", "defense", "spAtk", "spDef", "speed"];
   let htmlMarkup = `
-<!--<div class="extra-stats__evs">
     <h2 class="heading-2">EV Stats</h2>-->
-    <div class="extra-stats__evs-display">`;
-  evKeys.forEach((e, i) => {
-    evTotal += ev[e];
-    htmlMarkup += `
-<div class="extra-stats__evs-container-${e}">
-    <p>${evTitles[e]}</p>
-    <span class="extra-stats__evs-val">+${ev[e]}</span>
-</div>`;
-  });
-  htmlMarkup += `
-<div class="extra-stats__evs-container-total">
-    <p>Total Points: ${evTotal}</p>
-    </div>
-</div>
-<!--</div>-->`;
+    <div class="extra-stats__evs-display">
+    ${util.genEvMarkup(ev)}`;
   return htmlMarkup;
 };
 
@@ -601,18 +461,18 @@ const renderEvolutionNode = (evoNode, pointerRotation) => {
     evoNode.isRoot ? `<div class="evolution__container-row">` : ``
   }
     <div class="evolution__pokemon">
-    <img class="evolution__pokemon-image" src="../img/pokemonImages/${genName(
+    <img class="evolution__pokemon-image" src="../img/pokemonImages/${util.genName(
       evoNode.id,
       evoNode.id
     )}.png" alt="pokemon">
         <h4 class="heading-4 evolution__pokemon-naming">
-            <span class="evolution__pokemon-name">${upCaseFirstChr(
+            <span class="evolution__pokemon-name">${util.upCaseFirstChr(
               evoNode.name
             )}</span>
             <span class="evolution__pokemon-number">#${evoNode.id}</span>
         </h4>
     <div class="evolution__pokemon-types">
-    ${renderTypes(evoNode.types)}
+    ${util.renderTypes(evoNode.types)}
     </div>
     </div>
     ${childHTMLMarkup}
@@ -639,30 +499,13 @@ const renderEvolutionTree = evolutionTree => {
         </div>`;
 };
 
-const renderMoveRow = (rowData, isLevelup) => {
-  return `
-<tr class="table__row">
-    ${isLevelup ? `<td class="table__stats-val">${rowData.l}</td>` : ""}
-    <td class="table__stats-val">${upCaseFirstChr(rowData.n)}</td>
-    <td class="table__stats-val moves__type">
-        ${renderTypes([rowData.t])}
-    </td>
-    <td class="table__stats-val">
-        <button class="status status--${rowData.d}"></button>
-    </td>
-    <td class="table__stats-val">${rowData.p == null ? "_" : rowData.p}</td>
-    <td class="table__stats-val">${rowData.a == null ? "_" : rowData.a}</td>
-    <td class="table__stats-val">${rowData.pp}</td>
-</tr>`;
-};
-
 const renderMoveTable = (moveTable, typeTable, id) => {
   const isLevelup = typeTable == "Moves learned by leveling-up" ? true : false;
   let htmlMarkUp = "";
   let rowMarkup = "";
   if (moveTable.length) {
     moveTable.forEach(e => {
-      rowMarkup += renderMoveRow(e, isLevelup);
+      rowMarkup += util.renderMoveRow(e, isLevelup,false);
     });
     htmlMarkUp = `<section class="moves__section">
     <h3 class="heading-3">${typeTable}</h3>
