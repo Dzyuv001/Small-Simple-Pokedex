@@ -25,7 +25,6 @@ export default class Search {
 
     setQuery(query) { // used to rest the query string and some display elements
         this.query = query ? query : util.getURLParams(query);
-        console.warn(JSON.stringify(this.query));
         this.start = -1;
         this.end = -1;
     }
@@ -43,7 +42,7 @@ export default class Search {
 
     getResults() {
         if (JSON.stringify(this.query) != this.clearQuery) {
-            if (this.oldQuery != this.query) {
+            console.log("this is the query right here", this.query);
                 //the query will be checked
                 this.resetQueryResults();
                 if (this.query.search && (this.query.pokemonMoves == "1" || this.query.pokemonMoves == "3")) { //calling pokemon
@@ -56,22 +55,28 @@ export default class Search {
                 //they are no types , type1 , type2 and type1 and type2
                 //and those can be seen as filtering existing ids or find pokemon with searched types
                 if (this.matchingIds.length == 0) {
+                console.log("there are 0 matching ids")
                     //checks if filter or search operation
                     if (this.query.type1 != 0) {
+                        console.log("type 1 is set not to 0")
                         this.matchingIds = this.searchType(false);
-                        if (this.query.type2 != 0) {
+                        if (this.query.type2 != 0) {                            
+                            console.log("type 2 is set not to 0");
                             this.type2Ids = this.searchType(true);
                             this.type2Ids.forEach(e => {
                                 if (!this.matchingIds.includes(e)) this.matchingIds.push(e);
                             });
                         }
-                    } else if (this.query.type2 != 0) {
+                    } else if (this.query.type2 != 0) {                        
+                        console.log("type 2 is set not to 0");
                         this.matchingIds = this.searchType(true);
                     }
                 } else {
                     if (this.query.type1 != 0) {
+                        console.log("type 1 is set not to 0");
                         this.type1Ids = this.searchType(false);
-                        if (this.query.type2 != 0) {
+                        if (this.query.type2 != 0) {                            
+                            console.log("type 2 is set not to 0");
                             this.type2Ids = this.searchType(true);
                             this.type2Ids.forEach(e => {
                                 if (!this.type1Ids.includes(e)) this.type1Ids.push(e);
@@ -82,26 +87,29 @@ export default class Search {
                         this.filterOut(this.searchType(true));
                     }
                 }
-                if (this.query.gen != "" && this.query.gen !== "0000000" || this.isQueryFieldUpdated["gen"]) {
+                if (this.query.gen != "" && this.query.gen !== "0000000") {
+                    console.log("gen is being searched");
                     this.searchGen();
                 }
-                if (this.query.color != "0" || this.isQueryFieldUpdated["color"]) {
+                if (this.query.color != "0" ) {
+                    console.log("color is being searched");
                     this.searchColor();
                 }
-                if (this.query.shape != "0" || this.isQueryFieldUpdated["shape"]) {
+                if (this.query.shape != "0" ) {
+                    console.log("shape is being searched");
                     this.searchShape();
                 }
-                if (this.query.eggGroup != "0" || this.isQueryFieldUpdated["eggGroup"]) {
+                if (this.query.eggGroup != "0" ) {
+                    console.log("eggGroup is being searched");
                     this.searchEggGroup();
                 }
-                if (this.query.moveType != "0" || this.isQueryFieldUpdated["moveType"]) {
+                if (this.query.moveType != "0") {
+                    console.log("moveType is being searched");
                     this.searchMoveType();
                 }
-
                 this.matchingIds.forEach(e => {
                     const tempId = e > 10000 ? formToSpecies[e] : e;
                     let tempPokemon = pokedex[tempId];
-                    console.log("The value",e,tempId);
                     if (!this.result.hasOwnProperty(tempId)) this.result[tempPokemon.id] = [];
                     this.setResultElement(tempId, e);
                 });
@@ -109,7 +117,6 @@ export default class Search {
                 this.result.forEach((e) => {
 
                 })
-            }
         } else {
             if (this.oldQuery != this.query) {
                 this.resetQueryResults();
@@ -169,7 +176,6 @@ export default class Search {
     }
 
     getGen() {
-        console.log("running gen filter");
         let array = [];
         //the generation binary string is converted
         this.query.gen.split("").forEach((e, i) => { e == "1" ? array.push(true) : array.push(false) });
@@ -182,18 +188,15 @@ export default class Search {
         } else {
             this.filterOut(idsArray);
         }
-        console.log("this is the ids being write", this.matchingIds);
     }
 
     searchPokemonName() { // search the pokemon species data for a pokemon with a matching name
-        console.log("running name filter");
         this.pokemonKeys.forEach(i => { //looping through the pokemon data
             //looping through the pokemon data
             //this will allow for the looping through the pokemon forms
             let form = Object.keys(pokedex[i].v); // creating a list of
 
             form.forEach(i1 => {
-                console.log()
                 let name = pokedex[i].n;
                 let fromName = pokedex[i].v[i1].n;
                 if (name.includes(this.query.search) || fromName.includes(this.query.search)) {//used to check if the search text matches the current name
@@ -204,7 +207,6 @@ export default class Search {
     }
 
     searchMove() {//used to check if the text matches the the move name
-        console.log("running move name filter");
         this.moveKeys.forEach(i => {//looping through the moves to look at what pokemon may have then
             if (i === this.query.search) {
                 moves[i].pmon.forEach(e => {// looping through the pokemon
@@ -223,26 +225,26 @@ export default class Search {
             if (this.matchingIds.length == 0 ?
                 moves[i].t == this.query.pokemonMoves :
                 moves[i].t != this.query.pokemonMoves) {
-                // if(moves[i].t == this.query.pokemonMoves){
                 moves[i].pmon.forEach(e=>{
-                    // console.log("name",e)
                     seen[e]=true;
                 });
             }
         });
         tempMoveType = Object.keys(seen);
-        console.log("chrisss chan",tempMoveType);
         this.writeIds(tempMoveType);
     }
 
-    searchType(type) {
-        console.log("running type filter");
+    searchType(whichType) {
+        // which type will is bool  if false checking type 1 if true checking type
         let typeIdsArray = [];
-        this.pokemonKeys.forEach(i => {
-            let form = Object.keys(pokedex[i].v); // creating a list of pokemon forms
-            form.forEach(i1 => {
-                if (pokedex[i].v[i1].t[type] == (type ? this.query.type1 : this.query.type2)) {
-                    typeIdsArray.push(pokedex[i].v[i1].id);
+        this.pokemonKeys.forEach(key => {
+            let form = Object.keys(pokedex[key].v); // creating a list of pokemon forms
+            form.forEach(formKey => {
+
+                console.log(whichType,pokedex[key].v[formKey].t[+whichType],pokedex[key].v[formKey].t);
+                if (pokedex[key].v[formKey].t[+whichType] == (whichType ? this.query.type2:this.query.type1 )) {
+                    typeIdsArray.push(pokedex[key].v[formKey].id);
+                    console.log(pokedex[key].v[formKey].id)
                 }
             });
         });
@@ -251,7 +253,6 @@ export default class Search {
 
     searchGen() {
         let genMask = this.getGen();
-        console.log("running gen filter");
         let genTempArray = [];
         this.pokemonKeys.forEach(e => {
             //the current pokedex entry's gen value is compared into the
@@ -266,7 +267,6 @@ export default class Search {
     }
 
     searchShape() {
-        console.log("running shape filter");
         let tempShapeArray = [];
         this.pokemonKeys.forEach(e => {
             if (this.matchingIds.length == 0 ?
@@ -280,7 +280,6 @@ export default class Search {
     }
 
     searchEggGroup() {
-        console.log("running egg filter");
         let tempEggGroupArray = [];
         this.pokemonKeys.forEach(e => {
             if (this.matchingIds.length == 0 ?
@@ -294,7 +293,6 @@ export default class Search {
     }
 
     searchColor() {
-        console.log("running color filter");
         let tempColorArray = [];
         this.pokemonKeys.forEach(e => {
             if (this.matchingIds.length == 0 ?

@@ -85,14 +85,8 @@ const renderPrimaryLeft = data => {
 </section>`;
 };
 
-const renderPrimaryRight = (
-  primaryData,
-  flavorText,
-  ev,
-  eggData,
-  gender,
-  catchRate
-) => {
+const renderPrimaryRight = (primaryData,flavorText,ev,eggData,gender,catchRate) => {
+  console.log("gender data",gender );
   const color = [
     "Black",
     "Blue",
@@ -164,11 +158,9 @@ const renderPrimaryRight = (
         <div class="primaryInfo__right-element">
             <p class="primaryInfo__right-element-title">Gender:</p>
             <p class="primaryInfo__right-element-data">
-                <span class="primaryInfo__right-male">${
-                  gender.m
-                }% male</span><span class="primaryInfo__right-female">${
-    gender.f
-  }% female</span>
+            ${gender !== null ?'<span class="primaryInfo__right-male">'+gender.m+'% male</span>'+
+            '<span class="primaryInfo__right-female">'+gender.f+'% female</span>':
+          'no gender'}
             </p>
         </div>
         <div class="primaryInfo__right-element">
@@ -424,7 +416,6 @@ const renderHeldItems = heldItems => {
 
 const renderEVs = ev => {
   let htmlMarkup = `
-    <h2 class="heading-2">EV Stats</h2>-->
     <div class="extra-stats__evs-display">
     ${util.genEvMarkup(ev)}`;
   return htmlMarkup;
