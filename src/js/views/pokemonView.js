@@ -86,7 +86,6 @@ const renderPrimaryLeft = data => {
 };
 
 const renderPrimaryRight = (primaryData,flavorText,ev,eggData,gender,catchRate) => {
-  console.log("gender data",gender );
   const color = [
     "Black",
     "Blue",
