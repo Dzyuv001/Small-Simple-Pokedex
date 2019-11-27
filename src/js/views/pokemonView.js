@@ -313,7 +313,7 @@ const renderStatsRadar = (stats, name) => {
     labels: pointTitles,
     datasets: [
       {
-        label: name,
+        label: util.upCaseFirstChr(name),
         backgroundColor: "#76cde744",
         borderColor: "#76cde7",
         pointBackgroundColor: "rgba(179,181,198,1)",

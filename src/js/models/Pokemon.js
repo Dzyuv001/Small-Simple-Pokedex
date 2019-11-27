@@ -52,7 +52,7 @@ export default class Pokemon {
         this.pokeData.statTotal += tempStat;
       });
       this.pokeData.statsMinMax = utility.calcMinMax(100, this.pokeData.stats);
-     //setting the pokemon stat percentages 
+      //setting the pokemon stat percentages
       pokedexData.stats.forEach((e, i) => {
         //e = element , i = index
         this.pokeData.percent[utility.statNames[i]] =
@@ -76,7 +76,7 @@ export default class Pokemon {
       this.pokeData.primary.weight = pokedexData.weight;
       this.pokeData.primary.height = pokedexData.height;
       //getting the moves that the pokemon can learn.
-      this.pokeData.moves = await utility.getMoves( pokedexData.moves);
+      this.pokeData.moves = await utility.getMoves(pokedexData.moves);
     } catch (error) {
       console.log(error);
     }
@@ -87,7 +87,8 @@ export default class Pokemon {
     return this.pokeData.statsMinMax;
   }
 
-  setMinMax(level) {//used to set the mind max value
+  setMinMax(level) {
+    //used to set the mind max value
     this.pokeData.statsMinMax = utility.calcMinMax(level, this.pokeData.stats);
   }
 
@@ -148,7 +149,7 @@ export default class Pokemon {
       for (let i = 0; i <= heldItems.length - 1; i++) {
         // if the pokemon is holding an item the item array will be looped through
         try {
-          //an pokemon api call will be made to get the description of an item
+          //a pokemon api call will be made to get the description of an item
           // the rest of the item info will be gotten from the
           //pokemon api call where this function is being called from
           const queryString = heldItems[i].item.url;
@@ -222,13 +223,18 @@ export default class Pokemon {
       // loop through the egg groups to store the values
       species.egg_groups.forEach(e =>
         this.pokeData.eggData.eggGroup.push(e.name)
-      );//
+      ); //
       this.pokeData.evolutionTree = await this.getEvolution(
         species.evolution_chain.url
       );
-      let flavorText =
-        species.flavor_text_entries[species.flavor_text_entries.length - 1]
-          .flavor_text;
+      //loop through flavor text entries to find the english since its not stated which array position is english
+      let flavorText;
+      for (let i = 0; i < species.flavor_text_entries.length-1; i++) {
+        if (species.flavor_text_entries[i].language.name == "en"){
+          flavorText = species.flavor_text_entries[i].flavor_text;
+          break;
+        }
+      }
       // used to remove instance of off enter key presses that made the text display in odd ways
       flavorText = flavorText.replace("", "");
       this.pokeData.flavorText = flavorText;
@@ -264,11 +270,12 @@ export default class Pokemon {
             evoChain.evolution_details
           ));
       evoNode.types = [];
-      evoNode.isRoot = root;// set evolution root value , used to render table correctly
+      evoNode.isRoot = root; // set evolution root value , used to render table correctly
       res.data.types.forEach(type => {
         evoNode.types.push(util.getValKey(typesList, type.type.name));
       });
-      if (evoChain.evolves_to) {// check if the pokemon actually have any evolutions
+      if (evoChain.evolves_to) {
+        // check if the pokemon actually have any evolutions
         evoNode.evolutions = [];
         evoChain.evolves_to.forEach(async e => {
           // loop though all the possible evolutions and get their data by calling this function recursively
@@ -281,26 +288,38 @@ export default class Pokemon {
     }
   }
 
-  async setupEvolutionCriteria(evolutionDetails) { //format the the evolution reason
-    let tempString = "";// stores the evolution string
-    if (evolutionDetails[0]) {// check if there are evolution conditions
+  async setupEvolutionCriteria(evolutionDetails) {
+    //format the the evolution reason
+    let tempString = ""; // stores the evolution string
+    if (evolutionDetails[0]) {
+      // check if there are evolution conditions
 
-      if (evolutionDetails[0].min_level !== null) {//check the min level needed to evolve
+      if (evolutionDetails[0].min_level !== null) {
+        //check the min level needed to evolve
         tempString += " Level " + evolutionDetails[0].min_level + " ";
       }
-      if (evolutionDetails[0].held_item !== null) {//check if the pokemon needs to hold an item to evolve
+      if (evolutionDetails[0].held_item !== null) {
+        //check if the pokemon needs to hold an item to evolve
         tempString += " When holding " + evolutionDetails[0].held_item.name;
       }
-      if (evolutionDetails[0].item !== null) {//check what item is needed to evolve a pokemon
+      if (evolutionDetails[0].item !== null) {
+        //check what item is needed to evolve a pokemon
         tempString += " When given " + evolutionDetails[0].item.name;
       }
-      if (evolutionDetails[0].min_happiness !== null) {// check min happiness needed to evolve pokemon
-        tempString += " Friendship over" + evolutionDetails[0].min_happiness;
+      if (evolutionDetails[0].min_happiness !== null) {
+        // check min happiness needed to evolve pokemon
+        tempString += " Friendship over " + evolutionDetails[0].min_happiness;
       }
-      if (evolutionDetails[0].time_of_day !== "") {// check what time of day is needed to evolve the pokemon
+      if (evolutionDetails[0].time_of_day !== "") {
+        // check what time of day is needed to evolve the pokemon
         tempString += " During " + evolutionDetails[0].time_of_day + "time";
       }
-      if (evolutionDetails[0].relative_physical_stats !== null) {//get specific stats need to evolve
+      if (evolutionDetails[0].min_affection !== null) {
+        // check what affection level is need for the pokemon to evolve
+        tempString+= " When affection is " + evolutionDetails[0].min_affection + " or higher";
+      }
+      if (evolutionDetails[0].relative_physical_stats !== null) {
+        //get specific stats need to evolve
         const tempCriteria = [
           "Attack < Defense",
           "Attack = Defense",
@@ -309,16 +328,19 @@ export default class Pokemon {
         tempString +=
           " " + (tempCriteria[evolutionDetails[0].relative_physical_stats] + 1);
       }
-      if (evolutionDetails[0].location !== null) {//check if the pokemon evolves in particular location
+      if (evolutionDetails[0].location !== null) {
+        //check if the pokemon evolves in particular location
         tempString += " At ";
         let temKeys = Object.keys(evolutionDetails);
         for (let i = 0; i < temKeys.length; i++) {
-          tempString +=
-            evolutionDetails[temKeys[i]].location +
-            (i !== temKeys.length ? " or " : " ");
+          if (!tempString.includes(evolutionDetails[0].location.name)) {
+            tempString +=
+              (i !== 0 ? " or " : " ") + evolutionDetails[0].location.name;
+          }
         }
       }
-      if (evolutionDetails[0].trigger.name === "trade") {//check if the pokemon evolves from a trade
+      if (evolutionDetails[0].trigger.name === "trade") {
+        //check if the pokemon evolves from a trade
         tempString += " Traiding ";
       }
       if (evolutionDetails[0].location) {
@@ -336,7 +358,8 @@ export default class Pokemon {
     return parseInt(url.split("/")[6]);
   }
 
-  getData() {//will be used to get primary data 
+  getData() {
+    //will be used to get primary data
     const uId = this.query.id;
     const id = uId > 10000 ? pokemonToSpecies[uId] : uId;
     const pokemon = pokedex[id];

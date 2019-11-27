@@ -59,7 +59,7 @@ const controlPokemon = async () => {
           state.pokemon.pokeData,
           state.likes.isLiked(state.pokemon.pokeData.primary.uId)
         );
-      }, 2000);
+      }, 4000);
     } catch (error) {
       toastView.renderToast(error);
     }
