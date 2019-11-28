@@ -56,7 +56,7 @@ export default class Search {
         this.searchPokemonName();
         this.isFiltrating = true;
       }
-      //check if user wants to search for pokemon move name 
+      //check if user wants to search for pokemon move name
       if (
         this.query.search &&
         (this.query.pokemonMoves == "2" || this.query.pokemonMoves == "3")
@@ -64,58 +64,48 @@ export default class Search {
         this.searchMove();
         this.isFiltrating = true;
       }
-        //there are 8 different possibilities
-        //they are no types , type1 , type2 and type1 and type2
-        //and those can be seen as filtering existing ids or find pokemon with searched types
-        if (this.isFiltrating) {
-          console.log("there are 0 matching ids");
-          //checks if filter or search operation
-          if (this.query.type1 != 0) {
-            console.log("type 1 is set not to 0");
-            this.matchingIds = this.searchType(false);
-            if (this.query.type2 != 0) {
-              console.log("type 2 is set not to 0");
-              this.type2Ids = this.searchType(true);
-              this.type2Ids.forEach(e => {
-                if (!this.matchingIds.includes(e)) this.matchingIds.push(e);
-              });
-            }
-          } else if (this.query.type2 != 0) {
-            console.log("type 2 is set not to 0");
-            this.matchingIds = this.searchType(true);
+      //there are 8 different possibilities
+      //they are no types , type1 , type2 and type1 and type2
+      //and those can be seen as filtering existing ids or find pokemon with searched types
+      if (this.isFiltrating) {
+        if (this.query.type1 != 0) {
+          this.isFiltrating = true;
+          this.type1Ids = this.searchType(false);
+          if (this.query.type2 != 0) {
+            this.type2Ids = this.searchType(true);
+            //add type 2 array ids to type 1
+            this.type2Ids.forEach(e => {
+              if (!this.type1Ids.includes(e)) this.type1Ids.push(e);
+            });
           }
-        } else {
-          if (this.query.type1 != 0) {
-            this.isFiltrating = true;
-            console.log("type 1 is set not to 0");
-            this.type1Ids = this.searchType(false);
-            if (this.query.type2 != 0) {
-              console.log("type 2 is set not to 0");
-              this.type2Ids = this.searchType(true);
-              this.type2Ids.forEach(e => {
-                if (!this.type1Ids.includes(e)) this.type1Ids.push(e);
-              });
-            }
-            this.filterOut(this.type1Ids);
-          } else if (this.query.type2 != 0) {
-            this.isFiltrating = true;
-            this.filterOut(this.searchType(true));
-          }
+          //filtering out the
+          this.filterOut(this.type1Ids);
+        } else if (this.query.type2 != 0) {
+          this.isFiltrating = true;
+          this.filterOut(this.searchType(true));
         }
-      //   console.log("after type search for types", this.matchingIds);
-      //   if (this.query.gen != "") {
-      //     this.isFiltrating = true;
-      //     console.log("gen is being searched");
-      //     this.searchGen();
-      //   }
-      //   console.log("after type search gen", this.matchingIds);
-
-      //   if (this.query.color != "0") {
-      //     this.isFiltrating = true;
-      //     console.log("color is being searched");
-      //     this.searchColor();
-      //   }
-      //   console.log("after type search colour", this.matchingIds);
+      } else {
+        //checks if filter or search operation
+        if (this.query.type1 != 0) {
+          this.matchingIds = this.searchType(false);
+          if (this.query.type2 != 0) {
+            this.type2Ids = this.searchType(true);
+            this.type2Ids.forEach(e => {
+              if (!this.matchingIds.includes(e)) this.matchingIds.push(e);
+            });
+          }
+        } else if (this.query.type2 != 0) {
+          this.matchingIds = this.searchType(true);
+        }
+      }
+      if (this.query.gen != "0000000") {
+        this.searchGen();
+        this.isFiltrating = true;
+      }
+      if (this.query.color != "0") {
+        this.searchColor();
+        this.isFiltrating = true;
+      }
 
       //   if (this.query.shape != "0") {
       //     this.isFiltrating = true;
@@ -148,9 +138,12 @@ export default class Search {
         if (!this.result.hasOwnProperty(tempId))
           this.result[tempPokemon.id] = [];
         this.setResultElement(tempId, e);
-        //used to remove blank elements
-        this.result = this.result.filter(v => v != "");
       });
+      //used to remove blank elements
+      this.result = this.result.filter(v => v != "");
+      console.log("after rebuilding the data is as following", this.result);
+
+      //could add a relicense recalculation
     } else {
       if (this.oldQuery != this.query) {
         this.resetQueryResults();
@@ -199,11 +192,10 @@ export default class Search {
   }
 
   filterOut(filterArray) {
-    filterArray.forEach(e => {
-      if (!this.matchingIds.includes(e)) {
-        this.matchingIds.splice(this.matchingIds.indexOf(e), 1);
-      }
-    });
+    //every element in the filter array is
+    this.matchingIds = filterArray.filter(el =>
+      this.matchingIds.includes(el + "")
+    );
   }
 
   getGen() {
@@ -216,6 +208,7 @@ export default class Search {
   }
 
   writeIds(idsArray) {
+    console.log("Test string", idsArray, this.isFiltrating);
     if (this.isFiltrating) {
       this.filterOut(idsArray);
     } else {
@@ -248,7 +241,6 @@ export default class Search {
   searchMove() {
     //used to check if the text matches the the move name
     this.moveKeys.forEach(i => {
-        console.log(i);
       //looping through the moves to look at what pokemon may have then
       if (i.replace(/_/g, " ").includes(this.query.search)) {
         moves[i].pmon.forEach(e => {
@@ -278,14 +270,15 @@ export default class Search {
   searchType(whichType) {
     // which type will is bool  if false checking type 1 if true checking type
     let typeIdsArray = [];
+    //check which type will be checked
+    let queryType = whichType ? this.query.type2 : this.query.type1;
+    //looping through all the pokemon keys
     this.pokemonKeys.forEach(key => {
+      //looping through all the form keys (pokemon have many different forms)
       let form = Object.keys(pokedex[key].v); // creating a list of pokemon forms
       form.forEach(formKey => {
         //+whichType turns 0 or 1 into bool
-        if (
-          pokedex[key].v[formKey].t[+whichType] ==
-          (whichType ? this.query.type2 : this.query.type1)
-        ) {
+        if (pokedex[key].v[formKey].t[+whichType] == queryType) {
           typeIdsArray.push(pokedex[key].v[formKey].id);
         }
       });
@@ -296,32 +289,22 @@ export default class Search {
   searchGen() {
     let genMask = this.getGen();
     let genTempArray = [];
-    console.log("the mask is ", genMask);
     this.pokemonKeys.forEach(e => {
       //the current pokedex entry's gen value is compared into the
       //gen mask to see if the value is present in the gen mask
       // if so it will be added to the array.
-      if (
-        this.isFiltrating
-          ? !genMask[pokedex[e].g - 1]
-          : genMask[pokedex[e].g - 1]
-      ) {
+      if (genMask[pokedex[e].g - 1]) {
         let form = Object.keys(pokedex[e].v);
         genTempArray.push(...form); // add the forms array to the
       }
     });
-    console.log("after gen mask", genTempArray);
     this.writeIds(genTempArray);
   }
 
   searchShape() {
     let tempShapeArray = [];
     this.pokemonKeys.forEach(e => {
-      if (
-        this.isFiltrating
-          ? pokedex[e].s != this.query.shape
-          : pokedex[e].s == this.query.shape
-      ) {
+      if (pokedex[e].s == this.query.shape) {
         let form = Object.keys(pokedex[e].v);
         tempShapeArray.push(...form);
       }
@@ -347,11 +330,7 @@ export default class Search {
   searchColor() {
     let tempColorArray = [];
     this.pokemonKeys.forEach(e => {
-      if (
-        this.isFiltrating
-          ? pokedex[e].c == this.query.color
-          : pokedex[e].c == this.query.color
-      ) {
+      if (pokedex[e].c == this.query.color) {
         //find all the form ids of pokemon that DO NOT have the color that is being searched
         let form = Object.keys(pokedex[e].v);
         tempColorArray.push(...form);
