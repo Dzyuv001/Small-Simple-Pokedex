@@ -105,7 +105,7 @@ export const renderMoveRow = (rowData, isLevelup, isCompare) => {
       <td class="table__stats-val">${rowData.p == null ? "_" : rowData.p}</td>
       <td class="table__stats-val">${rowData.a == null ? "_" : rowData.a}</td>
       <td class="table__stats-val">${rowData.pp}</td>
-  ${isCompare ? '<td class="table__stats-val">' + rowData.ef + "x</td>" : ""}
+  ${isCompare ? '<td class="table__stats-val">' + rowData.ef + "</td>" : ""}
   </tr>`;
 };
 

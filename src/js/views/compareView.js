@@ -1,4 +1,3 @@
-import { elements, htmlIncept } from "./base";
 import Chart from "chart.js";
 import * as util from "./utility";
 
@@ -267,7 +266,7 @@ const renderEVs = ev => {
 };
 
 const renderMoveTable = (moveTable, typeTable, id, index) => {
-  const isLevelup = typeTable == "Moves learned by leveling-up" ? true : false;
+  const isLevelup = typeTable == ".moves__levelup" ? true : false;
   let htmlMarkUp = "";
   let rowMarkup = "";
   if (moveTable.length) {

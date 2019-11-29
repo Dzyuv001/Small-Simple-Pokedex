@@ -40,6 +40,7 @@ export const setInput = (queryString)=>{
 }
 
 const renderPokemon = (form, likes) => {
+  //used to render the pokemon 
   let markup = `
 <div class="pokemon__container">`;
   form.forEach((e, i) => {

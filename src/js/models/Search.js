@@ -38,7 +38,6 @@ export default class Search {
 
   getResults() {
     if (JSON.stringify(this.query) != this.clearQuery) {
-      console.log("this should not be run");
       this.resetQueryResults();
       //check if the user wants to search for pokemon name
       if (
