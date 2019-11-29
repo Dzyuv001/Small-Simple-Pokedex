@@ -1,0 +1,17 @@
+.footer {
+    max-width: 100rem;
+    margin: 0 auto 1rem auto;
+    padding: 2rem;
+    background: $color-light-1;
+    border-radius: 2rem;
+    font-size: 1.6rem;
+    transition: $transition-small;
+    
+    &__link {
+        transform: scale(1);
+        color:$color-text-grey-dark1;
+        &:hover {
+            transform: scale(3);
+        }
+    }
+  }
