@@ -1,4 +1,5 @@
 import * as base from "./base";
+import * as util from "./utility";
 
 export const getInput = () => {
   //used to get the search criteria
@@ -22,19 +23,21 @@ export const getInput = () => {
   });
   return searchCriteria;
 };
-export const clearResult = () => {};
 
-const pad = (str, max) => {
-  str = str.toString();
-  return str.length < max ? pad("0" + str, max) : str;
-};
-
-const genName = (id, uId, f) => {
-  if (parseInt(uId) < 10000) {
-    return pad(id, 3);
-  }
-  return `${pad(id, 3)}${f}`;
-};
+export const setInput = (queryString)=>{
+  //used to set the search criteria
+  base.elements.searchField.value = queryString.search;
+  base.elements.searchNameMovesArray[queryString.pokemonMoves].checked = true;
+  base.elements.searchType1.value = queryString.type1;
+  base.elements.searchType2.value = queryString.type2;
+  base.elements.searchColor.value = queryString.color;
+  base.elements.searchShape.value= queryString.shape;
+  base.elements.searchMoveType.value =queryString.moveType;
+  base.elements.searchEggGroup.value= queryString.eggGroup;
+  queryString.split("").forEach((val,i)=>{
+    base.elements.searchGenArray[i].checked = parseInt(val)
+  });
+}
 
 const renderPokemon = (form, likes) => {
   let markup = `
@@ -60,7 +63,7 @@ const renderPokemon = (form, likes) => {
         </div>
         <figure class="pokemon__img">
             <a class="pokemon__link" href="?type=pokemon&id=${e.uId}#pokemon">
-            <img src="../img/pokemonImages/${genName(
+            <img src="../img/pokemonImages/${util.genName(
               e.id,
               e.uId,
               e.f
@@ -108,9 +111,7 @@ export const clearPokdex = () => {
 };
 
 export const renderPokedex = (pokemons, start, end, max, likes) => {
-  console.log(pokemons);
   const pokedexLoadMore = document.querySelector(".pokedex__loadMore");
-
   if (pokedexLoadMore) {
     pokedexLoadMore.parentNode.removeChild(pokedexLoadMore);
   }
